@@ -1,14 +1,13 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
-export default function LogPengajuanStaff () {
-   const navigate = useNavigate();
-    const location = useLocation();
+export default function LogHistoryPimpinan () {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const tab = location.pathname.includes("PengajuanDigitalStaff") ? "PengajuanDigitalStaff" : "Arsip Fisik";
+  const tab = location.pathname.includes("HistoryDigitalPimpinan") ? "HistoryDigitalPimpinan" : "Arsip Fisik"; 
 
-
-  return (
-    <div className="wrapper">
+	return (
+<div className="wrapper">
   {/*sidebar wrapper */}
   <div className="sidebar-wrapper" data-simplebar="true">
     <div className="sidebar-header" style={{border: 'none', justifyContent: 'center'}}>
@@ -18,9 +17,9 @@ export default function LogPengajuanStaff () {
     </div>
     {/*navigation*/}
     <ul className="metismenu p-3" id="menu">
-          <h6 className="ms-3 mb-3">MAIN MENU</h6>
-          <li>
-            <Link to="/dashboardStaff" className="link">
+      <h6 className="ms-3 mb-3">MAIN MENU</h6>
+      <li>
+            <Link to="/dashboardPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
@@ -28,30 +27,30 @@ export default function LogPengajuanStaff () {
             </Link>
           </li>
           <li>
-            <Link to="/dataArsipStaff" className="link">
+            <Link to="/dataUserPimpinan" className="link">
               <div className="parent-icon">
-                <img src="/assets/images/clipboard-list.png" alt="Data Arsip" />
+                <img src="/assets/images/clipboard-list.png" alt="Data User" />
               </div>
-              <div className="menu-title">Data Arsip</div>
+              <div className="menu-title">Data User</div>
             </Link>
           </li>
           <li>
-            <Link to="/logPengajuanStaff" className="link">
+            <Link to="/menuArsipPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Log Pengajuan" />
               </div>
-              <div className="menu-title">Log Pengajuan</div>
+              <div className="menu-title">Menu Arsip</div>
             </Link>
           </li>
           <li>
-            <Link to="/logHistoryStaff" className="link">
+            <Link to="/approvalPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/history.png" alt="Log History" />
               </div>
-              <div className="menu-title">Log History</div>
+              <div className="menu-title">Approval</div>
           </Link>
           </li>
-        </ul>
+    </ul>
     {/*end navigation*/}
   </div>
   {/*end sidebar wrapper */}
@@ -67,7 +66,9 @@ export default function LogPengajuanStaff () {
         <div className="top-menu ms-auto">
           <ul className="navbar-nav align-items-center">
             <li className="nav-item dropdown dropdown-large">
+              <a className="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
+              </a>
             </li>
           </ul>
         </div>
@@ -75,7 +76,7 @@ export default function LogPengajuanStaff () {
           <div className="col">
             <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
               <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
-              Pegawai
+              Pimpinan
             </button>
           </div>
         </div>
@@ -84,27 +85,30 @@ export default function LogPengajuanStaff () {
   </header>
   {/*end header */}
   {/*start page wrapper */}
-  <div className="page-wrapper" style={{height: '500%'}}>
+  <div className="page-wrapper">
     <div className="page-content">
       <div className="d-flex align-items-center">
+        <Link to="/menuArsipPimpinan">
         <div className="search-bar flex-grow-1 d-flex align-items-center" style={{marginBottom: 10}}>
-          <h4 style={{marginBottom: 0}}>Log Pengajuan</h4>
+          <img src="assets/images/arrow-left.png" style={{width: 30, height: 30, marginRight: 10}} />
+          <h4 style={{marginBottom: 0}}>Log History</h4>
         </div>
+        </Link>
       </div>
       <div className="d-flex align-items-center mb-3">
         <div className="search-bar flex-grow-1">
-          <ul className="nav nav-pills mb-3" role="tablist">
+          <ul className="nav nav-pills" role="tablist">
             <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div onClick={() => navigate("/LogPengajuanStaff")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
+                  <div onClick={() => navigate("/menuArsipPimpinan/logHistoryPimpinan")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
                 </div>
               </div>
             </li>
             <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/LogPengajuanStaff/PengajuanDigitalStaff")} className={`tab-title ${tab === "PengajuanDigitalStaff" ? "active" : ""}`}>Arsip Digital</div>
+                  <div onClick={() => navigate("/menuArsipPimpinan/logHistoryPimpinan/HistoryDigitalPimpinan")} className={`tab-title ${tab === "HistoryDigitalPimpinan" ? "active" : ""}`}>Arsip Digital</div>
                 </div>
               </div>
             </li>
@@ -164,6 +168,9 @@ export default function LogPengajuanStaff () {
               <div>
                 <h7 className="mb-1 font-weight-bold">Petugas</h7> : <h7 className="mb-0 text-secondary">Dafa Maulana</h7>
               </div>		
+              <div>
+                <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
+              </div>		
             </div>
             <div>
               <div>
@@ -220,17 +227,6 @@ export default function LogPengajuanStaff () {
               <p>Nomor 1</p>
             </div>
           </div>
-          <div className="d-flex justify-content-between p-3 pb-0 pt-0">
-            <div className="mb-3 me-3 w-50">
-              <button type="button" className="btn btn-primary px-5 radius-30" style={{width: '100%'}}>Lihat Arsip</button>
-            </div>
-            <div className="mb-3 me-3 w-50">
-              <button type="button" className="btn btn-outline-primary px-5 radius-30" style={{width: '100%'}}>Download Arsip</button>
-            </div>	
-            <div className="mb-3 w-50">
-              <button type="button" className="btn btn-outline-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#kembaliFisik" style={{width: '100%'}}>Kembalikan Arsip</button>
-            </div>
-          </div>
         </div>
         <div className="customers-list-item cursor-pointer bg-white" style={{marginBottom: 15}}>
           <div className="top d-flex align-items-center justify-content-between p-3">
@@ -276,6 +272,9 @@ export default function LogPengajuanStaff () {
               </div>		
               <div>
                 <h7 className="mb-1 font-weight-bold">Petugas</h7> : <h7 className="mb-0 text-secondary">Dafa Maulana</h7>
+              </div>		
+              <div>
+                <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
               </div>		
             </div>
             <div>
@@ -338,11 +337,10 @@ export default function LogPengajuanStaff () {
           </div>
           <div className="d-flex justify-content-center p-3 pb-0 pt-0">
             <div className="mb-3 w-100">
-              <button type="button" className="btn btn-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#kembaliFisik" style={{width: '100%'}}>Kembalikan Arsip</button>
+              <button type="button" className="btn btn-primary px-5 radius-30 w-100" data-bs-toggle="modal" data-bs-target="#notifikasiKembali">Ingatkan Untuk Mengembalikan</button>
             </div>
           </div>
         </div>
-
         <div className="customers-list-item cursor-pointer bg-white" style={{marginBottom: 15}}>
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
@@ -372,6 +370,9 @@ export default function LogPengajuanStaff () {
               </div>		
               <div>
                 <h7 className="mb-1 font-weight-bold">Petugas</h7> : <h7 className="mb-0 text-secondary">Dafa Maulana</h7>
+              </div>		
+              <div>
+                <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
               </div>		
             </div>
             <div>
@@ -470,6 +471,9 @@ export default function LogPengajuanStaff () {
               <div>
                 <h7 className="mb-1 font-weight-bold">Petugas</h7> : <h7 className="mb-0 text-secondary">Dafa Maulana</h7>
               </div>		
+              <div>
+                <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
+              </div>		
             </div>
             <div>
               <div>
@@ -567,6 +571,9 @@ export default function LogPengajuanStaff () {
               <div>
                 <h7 className="mb-1 font-weight-bold">Petugas</h7> : <h7 className="mb-0 text-secondary">Dafa Maulana</h7>
               </div>		
+              <div>
+                <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
+              </div>		
             </div>
             <div>
               <div>
@@ -645,29 +652,22 @@ export default function LogPengajuanStaff () {
             </li>
           </ul>
         </nav>
-        
-        
-       
-        
-          {/* Modal Berhasil Kembali Fisik*/}
+      
+          {/* Modal Notifikasi Pengembalian*/}
           <div className="col">
-            <div className="modal fade" id="kembaliFisik" tabIndex={-1} aria-hidden="true">
+            <div className="modal fade" id="notifikasiKembali" tabIndex={-1} aria-hidden="true">
               <div className="modal-dialog modal-sm">
                 <div className="modal-content">
                   <div className="modal-header" style={{borderBottom: 'none'}}>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                   </div>
                   <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
-                    <h5 className="modal-title" style={{marginBottom: 15}}>Pengembalian Arsip Fisik</h5>
-                    <img src="assets/images/fileIcon.png" />
-                    <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Anda telah melebihi waktu peminjaman. Segera kembalikan arsip fisik yang anda pinjam pada petugas kami!</h6>
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Alasan Terlambat</label>
-                    <input type className="form-control radius-30" placeholder="Tuliskan alasan terlambat melakukan pengembalian" />
+                    <h5 className="modal-title" style={{marginBottom: 15}}>Notifikasi Pengembalian</h5>
+                    <img src="assets/images/bell icon.png" />
+                    <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Notifikasi pengembalian kepada peminjam telah berhasil terkirim.</h6>
                   </div>
                   <div className="modal-footer" style={{borderTop: 'none'}}>
-                    <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 50}}>Kembalikan Arsip</button>
+                    <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 50}}>Oke</button>
                   </div>
                 </div>
               </div>
@@ -675,6 +675,5 @@ export default function LogPengajuanStaff () {
           </div>
         </div>
       </div></div></div>
-
-  );
+  )
 }

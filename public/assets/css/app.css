@@ -35,14 +35,15 @@ body {
 	letter-spacing: .5px;
 	overflow-x:hidden;
 	background-color: #f4f4f4;
-	font-family: Roboto, sans-serif
+	font-family: Roboto, sans-serif;
 }
 a {
-	text-decoration: none
+	text-decoration: none;
+	color: #000;
 }
 .wrapper {
 	width: 100%;
-	position: relative
+	position: relative;
 }
 .sidebar-wrapper {
 	width: 250px;
@@ -81,6 +82,63 @@ a {
 	letter-spacing: 1px;
 	color: #0d6efd
 }
+
+.card-text{
+	white-space: nowrap;
+	font-size: 15px;
+}
+
+.card-body-arsip {
+	margin: 0 5px 0 5px;
+}
+
+.logo-arsip {
+	width: 35px;
+}
+
+.card-img-top {
+	width: 10px;
+	height: 50px;
+	margin-top: 15px; 
+}
+
+.card-body-pim {
+	padding: 1px;
+}
+
+.img-pim {
+	width: 60px;
+	height: 60px;
+}
+
+.btn-tindakan {
+	color: blue;
+	background-color: white;
+	font-size: 16px;
+	border-radius: 30px;
+}
+
+.btn-tambah, .btn-edit, .btn-avatar {
+	background-color: #3468F8;
+	border-radius: 30px;
+}
+
+.btn-hapus {
+	background-color: #F83434;
+	border-radius: 30px;
+}
+
+.kotak-user {
+	border-radius: 3px;
+}
+
+.btn-batal {
+	color: #3468F8;
+	border: 1px solid;
+	background-color: transparent;
+	border-radius: 30px;
+}
+
 .toggle-icon {
 	font-size: 22px;
 	cursor: pointer;
@@ -107,11 +165,27 @@ a {
 	height: 100%;
 	margin-top: 60px;
 	margin-bottom: 30px;
-	margin-left: 250px
+	margin-left: 250px;
 }
 .page-content {
-	padding: 1.5rem
+	padding: 1rem;
+	padding-top: 0;
 }
+
+.logo-item {
+	width: 30px;
+}
+
+.rekap-text-secondary {
+	margin-bottom: 0;
+	font-size: 14px;
+
+}
+
+.link{
+	text-decoration: none;
+}
+
 .page-footer {
 	background: #fff;
 	left: 250px;
@@ -1463,7 +1537,6 @@ input::placeholder {
 	display: flex;
 	align-items: center;
 	height: 60px;
-	border-left: 1px solid #f0f0f0;
 	margin-left: 1rem
 }
 .dropdown-large {

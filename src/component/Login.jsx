@@ -57,27 +57,26 @@ export default function Login() {
   return (
     <div>
       <div className="wrapper">
-        <div className="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0 bg-white">
-          <div className="container-fluid">
-            <div className="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+        <div className="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0 bg-white" style={{height: '100%'}}>
+          <div className="container-fluid" style={{marginTop: '5%'}}>
+            <div className="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
               <div className="col mx-auto">
                 <div className="mb-4 text-center">
                   <h3 style={{color: 'blue', fontWeight: 'bold'}}>Arsip Digital Bank</h3>
                 </div>
-                <div className="card border p-2 rounded" style={{boxShadow: 'none'}}>
+                <div className="card border p-2" style={{boxShadow: 'none'}}>
                   <div className="card-body">
-                    <div className="border p-2 rounded">
+                    <div className="border p-2">
                       <div className="text-center mb-5">
                         <h3>Sign In</h3>
                       </div>
                       <div className="form-body">
                         <form className="row g-3" onSubmit={handleLogin}>
                           <div className="col-12">
-                            <label htmlFor="inputEmailAddress" className="form-label">Email</label>
+                            <label className="form-label">Email</label>
                             <input 
                               type="email" 
                               className="form-control font-13" 
-                              id="inputEmailAddress" 
                               placeholder="Ketik Disini"  
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}

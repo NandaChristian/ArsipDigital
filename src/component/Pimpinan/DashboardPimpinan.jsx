@@ -1,8 +1,68 @@
 import { Link } from "react-router-dom";
+import Chart from "react-apexcharts";
+import { useState } from "react";
 
 export default function DashboardPimpinan () {
+  const MyLineChart = () => {
+    const [options] = useState({
+      chart: {
+        id: 'spline-bar',
+        type: 'area',
+        height: 350,
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 2
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.3,
+          stops: [0, 90, 100]
+        }
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']
+      },
+      title: {
+        text: 'Grafik Total Peminjaman Data Per Bulan'
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'right'
+      }
+    });
+  
+    // State for the chart series (data)
+    const [series] = useState([
+      {
+        name: "Arsip Digital",
+        data: [31, 40, 28, 51, 42, 109, 100, 91, 125, 90, 110, 95]
+      }
+    ]);
+  
     return (
-        <div className="wrapper">
+      <div>
+        <Chart
+          options={options}
+          series={series}
+          type="area"
+          height={350}
+        />
+      </div>
+    );
+  };
+
+    return (
+<div className="wrapper">
   {/*sidebar wrapper */}
   <div className="sidebar-wrapper" data-simplebar="true">
     <div className="sidebar-header" style={{border: 'none', justifyContent: 'center'}}>
@@ -14,7 +74,7 @@ export default function DashboardPimpinan () {
     <ul className="metismenu p-3" id="menu">
       <h6 className="ms-3 mb-3">MAIN MENU</h6>
       <li>
-            <Link to="/dashboardStaff">
+            <Link to="/dashboardPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
@@ -22,23 +82,23 @@ export default function DashboardPimpinan () {
             </Link>
           </li>
           <li>
-            <Link to="/dataUser">
+            <Link to="/dataUserPimpinan" className="link">
               <div className="parent-icon">
-                <img src="/assets/images/clipboard-list.png" alt="Data Arsip" />
+                <img src="/assets/images/clipboard-list.png" alt="Data User" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
           </li>
           <li>
-            <Link to="/dataArsipStaff">
+            <Link to="/menuArsipPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Log Pengajuan" />
               </div>
-              <div className="menu-title">Data Arsip</div>
+              <div className="menu-title">Menu Arsip</div>
             </Link>
           </li>
           <li>
-            <Link to="/approval">
+            <Link to="/approvalPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/history.png" alt="Log History" />
               </div>
@@ -79,568 +139,594 @@ export default function DashboardPimpinan () {
   {/*end header */}
   {/*start page wrapper */}
   <div className="page-wrapper">
-    <div className="page-content">
-      <div className="d-flex align-items-center">
-        <div className="search-bar flex-grow-1">
-          <h4>Selamat Datang</h4>
-        </div>
-        <div className="top-menu ms-auto">
-          <ul className="navbar-nav align-items-center">
-            <li className="nav-item dropdown dropdown-large">
-            </li>
-          </ul>
-        </div>
-        <img src="assets/images/Frame 14.png" className="user-img" alt="user avatar" />
-        <div className="user-info ps-3">
-          <p className="user-name mb-0">Rabu</p>
-          <p className="designattion mb-0">November 2025</p>
-        </div>
-        <div className="user-box">
-          <div className="col">
-            <button type="button" className="btn btn-primary px-5 radius-30">Approve Permintaan</button>
-          </div>
-        </div>
-      </div>
+  <div className="page-content ml-0">
+    <div className="d-flex align-items-center">
       <div className="search-bar flex-grow-1">
-        <h6>Rekap Per bulan</h6>
+        <h4>Selamat Datang</h4>
       </div>
-      <div className="pim-row d-flex">
-        <div className="row row-cols-1 row-cols-md-3 row-cols-xl-4">
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">Total Arsip</p>
-                  <h4 className="my-1">20</h4>
+      <div className="top-menu ms-auto">
+        <ul className="navbar-nav align-items-center">
+          <li className="nav-item dropdown dropdown-large">
+          </li>
+        </ul>
+      </div>
+      <img src="assets/images/Frame 14.png" className="user-img" alt="user avatar" />
+      <div className="user-info ps-3">
+        <p className="user-name mb-0">Rabu</p>
+        <p className="designattion mb-0">November 2025</p>
+      </div>
+      <Link to="/approvalPetugas">
+      <div className="user-box">
+        <div className="col">
+          <button type="button" className="btn btn-primary px-5 radius-30">Approve Permintaan</button>
+        </div>
+      </div>
+      </Link>
+    </div>
+    <div className="search-bar flex-grow-1">
+      <h6>Rekap Per bulan</h6>
+    </div>
+    <div className="pim-row d-flex row-cols-xl-2 justify-content-between">
+      <div className="row row-cols-xl-4 me-0 g-3" style={{width: '80%'}}>
+        <div className="col">
+          <div className="card radius-10" style={{height: '100%'}}>
+            <div className="card-body">
+              <div className="text-center">
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-success text-success mb-3"><img src="assets/images/circle-check.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">Total Kategori</p>
-                  <h4 className="my-1">12</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">Total Petugas</p>
-                  <h4 className="my-1">11</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">Total User</p>
-                  <h4 className="my-1">8</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/file-warning.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">Permintaan Disetujui</p>
-                  <h4 className="my-1">2</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/file-warning.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">Permintaan Ditolak</p>
-                  <h4 className="my-1">2</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/file-warning.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">File Dipinjam</p>
-                  <h4 className="my-1">2</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card radius-10">
-              <div className="card-body">
-                <div className="text-center">
-                  <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/file-warning.png" alt />
-                  </div>
-                  <p className="mb-0 text-secondary">File Belum Dikembalikan</p>
-                  <h4 className="my-1">2</h4>
-                </div>
+                <h4 className="my-1">20</h4>
+                <p className="mb-0 text-secondary">Total Arsip</p>
               </div>
             </div>
           </div>
         </div>
         <div className="col">
-          <div className="card radius-10">
+          <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/file-warning.png" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/list.png" className="logo-item" alt />
                 </div>
-                <p className="mb-0 text-secondary">Permintaan Peminjaman</p>
+                <h4 className="my-1">12</h4>
+                <p className="mb-0 text-secondary">Total Kategori</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card radius-10" style={{height: '100%'}}>
+            <div className="card-body">
+              <div className="text-center">
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/users.png" className="logo-item" alt />
+                </div>
+                <h4 className="my-1">11</h4>
+                <p className="mb-0 text-secondary">Total Petugas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card radius-10" style={{height: '100%'}}>
+            <div className="card-body">
+              <div className="text-center">
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/users.png" className="logo-item" alt />
+                </div>
+                <h4 className="my-1">8</h4>
+                <p className="mb-0 text-secondary">Total User</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card radius-10" style={{height: '100%'}}>
+            <div className="card-body">
+              <div className="text-center">
+                <div className="widgets-icons rounded-circle mx-auto bg-light-success text-success mb-3"><img src="assets/images/circle-check.png" className="logo-item" alt />
+                </div>
                 <h4 className="my-1">2</h4>
+                <p className="mb-0 text-secondary">Permintaan Disetujui</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card radius-10" style={{height: '100%'}}>
+            <div className="card-body">
+              <div className="text-center">
+                <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/circle-x.png" className="logo-item" alt />
+                </div>
+                <h4 className="my-1">2</h4>
+                <p className="mb-0 text-secondary">Permintaan Ditolak</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card radius-10" style={{height: '100%'}}>
+            <div className="card-body">
+              <div className="text-center">
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
+                </div>
+                <h4 className="my-1">2</h4>
+                <p className="mb-0 text-secondary">File <br />Dipinjam</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card radius-10" style={{height: '100%'}}>
+            <div className="card-body">
+              <div className="text-center">
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
+                </div>
+                <h4 className="my-1">2</h4>
+                <p className="mb-0 text-secondary">File Belum Dikembalikan</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="row row-cols-1 row-cols-xl-2">
-        <div className="col d-flex">
-          <div className="card radius-10 w-100">
-            <div className="card-body">
-              <div id="chart3" />
+      <div className="col" style={{width: '20%'}}>
+        <div className="card" style={{height: '100%', backgroundColor: '#3468F8', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <div className="text-center">
+              <div className="widgets-icons rounded-circle mx-auto bg-white text-white mb-3"><img src="assets/images/file-clock.png" className="logo-item" alt />
+              </div>
+              <h4 className="my-1 text-white">2</h4>
+              <p className="mb-0 text-white">Permintaan Peminjaman</p>
             </div>
+        </div>
+      </div>
+    </div>
+    <div className="row row-cols-1 row-cols-xl-2 mt-3">
+      <div className="col d-flex">
+        <div className="card radius-10 w-100">
+          <div className="card-body">
+            <MyLineChart />
           </div>
         </div>
-        <div className="col d-flex">
-          <div className="card radius-10 w-100">
-            <div className="card-body">
-              <div className="d-flex align-items-center">
-                <div>
-                  <h5 className="mb-1">Nama Arsip</h5>
-                  <p className="mb-0 font-13 text-secondary">OJK</p>
-                </div>
-                <div className="font-22 ms-auto">
-                  <button type="button" className="btn btn-primary radius-30">Pengajuan Peminjaman</button>
-                </div>
+      </div>
+      <div className="col d-flex">
+        <div className="card radius-10 w-100" style={{backgroundColor: '#3468F8'}}>
+          <div className="card-body">
+            <div className="d-flex align-items-center">
+              <div>
+                <h5 className="mb-1 text-white">Nama Arsip</h5>
+                <p className="mb-0 font-13 text-white">OJK</p>
+              </div>
+              <div className="font-22 ms-auto">
+                <button type="button" className="btn-tindakan p-2 pe-3 ps-3">Tindakan <img src="assets/images/arrow-up-right.png" alt /></button>
               </div>
             </div>
-            <div className>
-              <div className="row">
-                <div className="d-flex">
+          </div>
+          <div className>
+            <div className="row">
+              <div className="d-flex justify-content-center align-items-center" style={{width: '100%'}}>
+                <div className>
+                  <img src="assets/images/stackfiles.png" width={148} height={120} alt />
+                </div>
+              </div>
+              <div className="colom d-flex p-4" style={{flexDirection: 'column'}}>
+                <div className="kolom d-flex mb-3">
                   <div className>
-                    <img src="assets/images/icons/chair.png" width={148} height={120} alt />
+                    <h6 className="mb-1 text-white">Nama Pengguna</h6>
+                    <p className="mb-0 text-white">Citra</p>
+                  </div>
+                  <div className="ms-3">
+                    <h6 className="mb-1 text-white">Hak Akses</h6>
+                    <p className="mb-0 text-white">2</p>
                   </div>
                 </div>
-                <div className="colom d-flex" style={{flexDirection: 'column'}}>
-                  <div className="kolom d-flex">
-                    <div className>
-                      <h6 className="mb-1">Nama Pengguna</h6>
-                      <p className="mb-0">Citra</p>
-                    </div>
-                    <div className>
-                      <h6 className="mb-1">Hak Akses</h6>
-                      <p className="mb-0">2</p>
-                    </div>
+                <div className="kolom d-flex">
+                  <div className>
+                    <h6 className="mb-1 text-white">Tipe Arsip</h6>
+                    <p className="mb-0 text-white">Digital</p>
                   </div>
-                  <div className="kolom d-flex">
-                    <div className>
-                      <h6 className="mb-1">Tipe Arsip</h6>
-                      <p className="mb-0">Digital</p>
-                    </div>
-                    <div className>
-                      <h6 className="mb-1">Waktu Permintaan</h6>
-                      <p className="mb-0">21 November 2026 | <br />15:32</p>
-                    </div>
+                  <div className style={{marginLeft: 65}}>
+                    <h6 className="mb-1 text-white">Waktu Permintaan</h6>
+                    <p className="mb-0 text-white">21 November 2026 | <br />15:32</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="col d-flex">
-        <div className="card radius-10 w-100">
-          <div className="card-body">
-            <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">File Terbesar</div>
-                  </div>
-                </a>
-              </li>
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">File Yang Banyak Di Akses</div>
-                  </div>
-                </a>
-              </li>
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">User Yang Sering Akses</div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            {/* File Terbesar */}
-            <div className="row">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-            <div className="row">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-            <div className="row">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-            <div className="row border 1">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-          </div>
-        </div>
-      </div>
-      {/* File Yang Banyak Diakses */}
-      <div className="col d-flex">
-        <div className="card radius-10 w-100">
-          <div className="card-body">
-            <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">File Terbesar</div>
-                  </div>
-                </a>
-              </li>
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">File Yang Banyak Di Akses</div>
-                  </div>
-                </a>
-              </li>
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">User Yang Sering Akses</div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            {/* File Terbesar */}
-            <div className="row">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Fisik</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-            <div className="row">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Fisik</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-            <div className="row">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Fisik</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-            <div className="row border 1">
-              <div className="col-md-2 text-end d-grid">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
-              </div>
-              <div className="col-md-10">
-                <div className="kanan" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
-                  <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
-                    <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Fisik</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                    </div>
-                    <div>
-                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>           
-          </div>
-        </div>
-      </div>
-      {/* User Yang Sering Akses */}
-      <div className="col d-flex">
-        <div className="card radius-10 w-100">
-          <div className="card-body">
-            <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">File Terbesar</div>
-                  </div>
-                </a>
-              </li>
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">File Yang Banyak Di Akses</div>
-                  </div>
-                </a>
-              </li>
-              <li className="nav-item" role="presentation" style={{width: '30%'}}>
-                <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="tab-title">User Yang Sering Akses</div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            {/* File Terbesar */}
-            <a href="javascript:;" className="list-group-item">
-              <div className="d-flex">
-                <div className="chat-user-online">
-                  <img src="assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
-                </div>
-                <div className="flex-grow-1 ms-2">
-                  <h6 className="mb-0 chat-title">Louis Litt</h6>
-                  <p className="mb-0 chat-msg">You just got LITT up, Mike.</p>
-                </div>
-                <div className="chat-time">9:51 AM</div>
-              </div>
-            </a>           
           </div>
         </div>
       </div>
     </div>
-  </div></div>
+    <div className="col d-flex mt-3">
+      <div className="card radius-10 w-100">
+        <div className="card-body-pim">
+          <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">File Terbesar</div>
+                </div>
+              </a>
+            </li>
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">File Yang Banyak Di Akses</div>
+                </div>
+              </a>
+            </li>
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">User Yang Sering Akses</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+          {/* File Terbesar */}
+          <div className="kotak-file p-3 pt-0 pb-0">
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim"alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>           
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>            
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div className="row border 1 radius-10 pt-3 pb-3 mb-1">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>      
+          </div>    
+        </div>
+      </div>
+    </div>
+    {/* File Yang Banyak Diakses */}
+    <div className="col d-flex mt-3">
+      <div className="card radius-10 w-100">
+        <div className="card-body-pim">
+          <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">File Terbesar</div>
+                </div>
+              </a>
+            </li>
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">File Yang Banyak Di Akses</div>
+                </div>
+              </a>
+            </li>
+            <li className="n~av-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">User Yang Sering Akses</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+          
+          <div className="kotak-file p-3 pt-0 pb-0">
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>           
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>            
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div className="row border 1 radius-10 pt-3 pb-3 mb-1">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                    <div className>
+                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>      
+          </div>    
+        </div>
+      </div>
+    </div>
+    {/* User Yang Sering Akses */}
+    <div className="col d-flex mt-3">
+      <div className="card radius-10 w-100">
+        <div className="card-body-pim">
+          <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">File Terbesar</div>
+                </div>
+              </a>
+            </li>
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">File Yang Banyak Di Akses</div>
+                </div>
+              </a>
+            </li>
+            <li className="nav-item" role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="tab-title">User Yang Sering Akses</div>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <div className="list-group-item ps-2 pe-2 border-0">
+            <div className="d-flex mb-4">
+              <div className="nomor align-items-center justify-content-center d-flex" style={{marginBottom: 0, marginRight: 15, fontSize: 'large'}}>
+                1
+              </div>
+              <div className="chat-user-online">
+                <img src="assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
+              </div>
+              <div className="flex-grow-1 ms-3 align-items-center d-flex">
+                <h3 className="mb-0 chat-title">Citra</h3>
+              </div>
+              <div className="chat-time align-items-center d-flex">12 Kali Akses</div>
+            </div>
+            <div className="d-flex mb-4">
+              <div className="nomor align-items-center justify-content-center d-flex" style={{marginBottom: 0, marginRight: 15, fontSize: 'large'}}>
+                2
+              </div>
+              <div className="chat-user-online">
+                <img src="assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
+              </div>
+              <div className="flex-grow-1 ms-3 align-items-center d-flex">
+                <h3 className="mb-0 chat-title">Iskandar Rizqi</h3>
+              </div>
+              <div className="chat-time align-items-center d-flex">2 Kali Akses</div>
+            </div>
+            <div className="d-flex">
+              <div className="nomor align-items-center justify-content-center d-flex" style={{marginBottom: 0, marginRight: 15, fontSize: 'large'}}>
+                3
+              </div>
+              <div className="chat-user-online">
+                <img src="assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
+              </div>
+              <div className="flex-grow-1 ms-3 align-items-center d-flex">
+                <h3 className="mb-0 chat-title">User</h3>
+              </div>
+              <div className="chat-time align-items-center d-flex">1 Kali Akses</div>
+            </div>
+          </div>
+        </div></div></div></div></div>
+  </div>
     );
 }
 

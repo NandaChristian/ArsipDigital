@@ -1,11 +1,11 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 
-export default function DataArsipStaff () {
+export default function DataArsipPimpinan () {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const tab = location.pathname.includes("ArsipDigitalStaff") ? "ArsipDigitalStaff" : "Arsip Fisik";
+  const tab = location.pathname.includes("ArsipDigitalPimpinan") ? "ArsipDigitalPimpinan" : "Arsip Fisik";
 
 
 
@@ -20,9 +20,9 @@ export default function DataArsipStaff () {
     </div>
     {/*navigation*/}
     <ul className="metismenu p-3" id="menu">
-          <h6 className="ms-3 mb-3">MAIN MENU</h6>
-          <li>
-            <Link to="/dashboardStaff" className="link">
+      <h6 className="ms-3 mb-3">MAIN MENU</h6>
+      <li>
+            <Link to="/dashboardPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
@@ -30,30 +30,30 @@ export default function DataArsipStaff () {
             </Link>
           </li>
           <li>
-            <Link to="/dataArsipStaff" className="link">
+            <Link to="/dataUserPimpinan" className="link">
               <div className="parent-icon">
-                <img src="/assets/images/clipboard-list.png" alt="Data Arsip" />
+                <img src="/assets/images/clipboard-list.png" alt="Data User" />
               </div>
-              <div className="menu-title">Data Arsip</div>
+              <div className="menu-title">Data User</div>
             </Link>
           </li>
           <li>
-            <Link to="/logPengajuanStaff" className="link">
+            <Link to="/menuArsipPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Log Pengajuan" />
               </div>
-              <div className="menu-title">Log Pengajuan</div>
+              <div className="menu-title">Menu Arsip</div>
             </Link>
           </li>
           <li>
-            <Link to="/logHistoryStaff" className="link">
+            <Link to="/approvalPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/history.png" alt="Log History" />
               </div>
-              <div className="menu-title">Log History</div>
+              <div className="menu-title">Approval</div>
           </Link>
           </li>
-        </ul>
+    </ul>
     {/*end navigation*/}
   </div>
   {/*end sidebar wrapper */}
@@ -77,7 +77,7 @@ export default function DataArsipStaff () {
           <div className="col">
             <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
               <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
-              Pegawai
+              Pimpinan
             </button>
           </div>
         </div>
@@ -89,9 +89,12 @@ export default function DataArsipStaff () {
   <div className="page-wrapper">
     <div className="page-content">
       <div className="d-flex align-items-center">
-        <div className="search-bar flex-grow-1">
-          <h4>Data Arsip</h4>
+        <Link to="/menuArsipPimpinan">
+        <div className="search-bar flex-grow-1 d-flex align-items-center" style={{marginBottom: 10}}>
+          <img src="assets/images/arrow-left.png" style={{width: 30, height: 30, marginRight: 10}} />
+          <h4 style={{marginBottom: 0}}>Data Arsip</h4>
         </div>
+        </Link>
       </div>
       <div className="d-flex align-items-center">
         <div className="search-bar flex-grow-1">
@@ -99,23 +102,18 @@ export default function DataArsipStaff () {
             <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/dataArsipStaff")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
+                  <div  onClick={() => navigate("/menuArsipPimpinan/dataArsipPimpinan")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
                 </div>
               </div>
             </li>
             <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/dataArsipStaff/ArsipDigitalStaff")} className={`tab-title ${tab === "ArsipDigitalStaff" ? "active" : ""}`}>Arsip Digital</div>
+                  <div  onClick={() => navigate("/menuArsipPimpinan/dataArsipPimpinan/ArsipDigitalPimpinan")} className={`tab-title ${tab === "ArsipDigitalPimpinan" ? "active" : ""}`}>Arsip Digital</div>
                 </div>
               </div>
             </li>
           </ul>
-        </div>
-        <div className="user-box">
-          <div className="col mb-3">
-            <button type="button" className="btn btn-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#modalFisik">Pengajuan Peminjaman</button>
-          </div>
         </div>
       </div>
       <div className="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
@@ -129,7 +127,7 @@ export default function DataArsipStaff () {
               <p className="card-text">Arsip Administrasi dan Keuangan</p>
             </div>
             <ul className="list-group list-group-flush" style={{borderTop: "none"}}>
-              <Link to="/dataArsipStaff/lantaiStaff" className="link">
+              <Link to="/dataArsipPimpinan/lantaiPimpinan" className="link">
               <li className="list-group-item" style={{border: 'none'}}>
                 <div className="col">
                   <div className="card radius-10 shadow-none">
@@ -147,7 +145,7 @@ export default function DataArsipStaff () {
                 </div>
               </li>
               </Link>
-              <Link to="/dataArsipStaff/ruang" className="link">
+              <Link to="/dataArsipPimpinan/ruangPimpinan" className="link">
               <li className="list-group-item" style={{border: 'none'}}>
                 <div className="col">
                   <div className="card radius-10 shadow-none">
@@ -165,7 +163,7 @@ export default function DataArsipStaff () {
                 </div>
               </li>
               </Link>
-              <Link to="/dataArsipStaff/arsip" className="link">
+              <Link to="/dataArsipPimpinan/arsipPimpinan" className="link">
               <li className="list-group-item" style={{border: 'none'}}>
                 <div className="col">
                   <div className="card radius-10 shadow-none">
