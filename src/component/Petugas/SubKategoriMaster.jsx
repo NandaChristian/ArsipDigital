@@ -50,14 +50,14 @@ const navigate = useNavigate();
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPetugas" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/dataArsipPetugas" className="link">
               <div className="parent-icon">

@@ -2,6 +2,9 @@
 import './App.css';
 
 import { Routes, Route, Navigate } from "react-router-dom";
+import { PengajuanProvider } from './component/Staff/PengajuanContext.jsx';
+
+
 import Login from "./component/Login.jsx";
 import DashboardStaff from "./component/Staff/DashboardStaff.jsx";
 import DataArsipStaff from './component/Staff/DataArsipStaff.jsx';
@@ -73,9 +76,12 @@ function ProtectedRoute({ children, allowedRoles }) {
 
 export default function App() {
   return (
-    <Routes>
+    <PengajuanProvider>
     
+    <Routes>
       <Route path="/" element={<Login />} />
+
+      
       <Route
         path="/dashboardStaff"
         element={
@@ -104,6 +110,7 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+      
       <Route
         path="/dataArsipStaff"
         element={
@@ -112,6 +119,17 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+
+       <Route
+        path="/logPengajuanStaff"
+        element={
+          <ProtectedRoute>
+            <LogPengajuanStaff />
+          </ProtectedRoute>
+        }
+      />
+      
+
       <Route
         path="/dataArsipStaff/ArsipDigitalStaff"
         element={
@@ -175,14 +193,7 @@ export default function App() {
         }
       />
 
-      <Route
-        path="/logPengajuanStaff"
-        element={
-          <ProtectedRoute>
-            <LogPengajuanStaff />
-          </ProtectedRoute>
-        }
-      />
+     
 
       <Route
         path="/logPengajuanStaff/PengajuanDigitalStaff"
@@ -210,6 +221,7 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+       
 
       {/* <Route
         path="/dataUserPimpinan"
@@ -464,6 +476,7 @@ export default function App() {
       /> */}
 
       </Routes>
+      </PengajuanProvider>
     
   );
 }

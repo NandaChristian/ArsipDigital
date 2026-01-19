@@ -297,15 +297,15 @@ export default function ArsipDigitalStaff () {
         <div className="modal-dialog modal-dialog-scrollable">
           <div className="modal-content">
             <div className="modal-header" style={{border: 'none'}}>
-              <h5 className="modal-title">Formulir Peminjaman Arsip Digital</h5>
+              <h5 className="modal-title" style={{paddingLeft: '15%'}}>Formulir Peminjaman Arsip Digital</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
             </div>
             <div className="modal-body">
-              <img src="/assets/images/documents.png" />
+              <img src="/assets/images/documents.png" style={{width: 100, margin: 'auto', display: 'flex'}} />
               <form>
                 <div className="mb-3">
                   <label className="form-label">Nama Petugas</label>
-                  <select className="form-select mb-3 radius-30" aria-label="Default select example">
+                  <select className="form-select mb-3" style={{borderRadius: 30}} aria-label="Default select example">
                     <option selected>Pilih Petugas</option>
                     <option value={1}>Dafa Maulana | 07.00 - 13.00 Petugas Siap Membantu</option>
                     <option value={2}>Adam | 07.00 - 13.00 Petugas Sedang Melayani User Lain</option>
@@ -313,32 +313,32 @@ export default function ArsipDigitalStaff () {
                   </select>
                 </div>
                 <div className="line" style={{display: 'flex'}}>
-                  <div className="mb-3">
+                  <div className="mb-3" style={{width: '100%', marginRight: 10}}>
                     <label className="form-label">Kategori</label>
-                    <select className="form-select mb-3 radius-30" aria-label="Default select example">
+                    <select className="form-select mb-3" style={{borderRadius: 30}} aria-label="Default select example">
                       <option selected>Pilih Kategori</option>
                       <option value={1}>One</option>
                       <option value={2}>Two</option>
                       <option value={3}>Three</option>
                     </select>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3" style={{width: '100%', marginRight: 10}}>
                     <label className="form-label">Sub Kategori</label>
-                    <select className="form-select mb-3 radius-30" aria-label="Default select example">
+                    <select className="form-select mb-3" style={{borderRadius: 30}} aria-label="Default select example">
                       <option selected>Pilih Sub Kategori</option>
                       <option value={1}>One</option>
                       <option value={2}>Two</option>
                       <option value={3}>Three</option>
                     </select>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3" style={{width: '100%', marginRight: 10}}>
                     <label className="form-label">Kode</label>
-                    <input type className="form-control radius-30" placeholder="Kode Arsip" />
+                    <input type className="form-control" style={{borderRadius: 30}} placeholder="Kode Arsip" />
                   </div>
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Nama Arsip</label>
-                  <select className="form-select mb-3 radius-30" aria-label="Default select example">
+                  <select className="form-select mb-3" style={{borderRadius: 30}} aria-label="Default select example">
                     <option selected>Nama Arsip</option>
                     <option value={1}>One</option>
                     <option value={2}>Two</option>
@@ -347,11 +347,11 @@ export default function ArsipDigitalStaff () {
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Kode</label>
-                  <input type className="form-control radius-30" />
+                  <input type className="form-control" style={{borderRadius: 30}} />
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Tipe Arsip</label>
-                  <input type="text" className="form-control radius-30" />
+                  <input type="text" className="form-control" style={{borderRadius: 30}} />
                 </div>
                 <label className="form-label">Jenis Arsip</label>
                 <div className="line-check" style={{display: 'flex'}}>
@@ -371,7 +371,7 @@ export default function ArsipDigitalStaff () {
                 <label className="form-label">Jenis Arsip otomatis muncul setelah memilih arsip</label>
                 <div className="mb-3">
                   <label className="form-label">Pilih Tujuan</label>
-                  <select className="form-select mb-3 radius-30" aria-label="Default select example">
+                  <select className="form-select mb-3" style={{borderRadius: 30}} aria-label="Default select example">
                     <option selected>Pilih Tujuan</option>
                     <option value={1}>One</option>
                     <option value={2}>Two</option>
@@ -381,7 +381,7 @@ export default function ArsipDigitalStaff () {
               </form>
             </div>
             <div className="modal-footer" style={{border: 'none'}}>
-              <button type="button" className="btn btn-primary radius-30" data-bs-toggle="modal" data-bs-target="#berhasilDigital" style={{width: '100%'}}>Ajukan Peminjaman</button>
+              <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 30}} data-bs-toggle="modal" data-bs-target="#berhasilDigital">Ajukan Peminjaman</button>
             </div>
           </div>
         </div>
