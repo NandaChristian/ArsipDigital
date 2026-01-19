@@ -2,74 +2,73 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import Chart from "react-apexcharts";
 import { useState } from "react";
 
-export default function DashboardPimpinan () {
-  const navigate = useNavigate();
+export default function FileBanyakDiaksesPim () {
+    const navigate = useNavigate();
   const location = useLocation();
 
   const tab = location.pathname.includes("UserAkses") ? "UserAkses" 
               : location.pathname.includes("FileBanyakDiakses") ? "FileBanyakDiakses"
               : "FileTerbesar";
-
   const MyLineChart = () => {
-    const [options] = useState({
-      chart: {
-        id: 'spline-bar',
-        type: 'area',
-        height: 350,
-        zoom: {
+      const [options] = useState({
+        chart: {
+          id: 'spline-bar',
+          type: 'area',
+          height: 350,
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
           enabled: false
+        },
+        stroke: {
+          curve: 'smooth',
+          width: 2
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.7,
+            opacityTo: 0.3,
+            stops: [0, 90, 100]
+          }
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']
+        },
+        title: {
+          text: 'Grafik Total Peminjaman Data Per Bulan'
+        },
+        legend: {
+          position: 'top',
+          horizontalAlign: 'right'
         }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: 'smooth',
-        width: 2
-      },
-      fill: {
-        type: 'gradient',
-        gradient: {
-          shadeIntensity: 1,
-          opacityFrom: 0.7,
-          opacityTo: 0.3,
-          stops: [0, 90, 100]
+      });
+    
+      // State for the chart series (data)
+      const [series] = useState([
+        {
+          name: "Arsip Digital",
+          data: [31, 40, 28, 51, 42, 109, 100, 91, 125, 90, 110, 95]
         }
-      },
-      xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']
-      },
-      title: {
-        text: 'Grafik Total Peminjaman Data Per Bulan'
-      },
-      legend: {
-        position: 'top',
-        horizontalAlign: 'right'
-      }
-    });
-  
-    // State for the chart series (data)
-    const [series] = useState([
-      {
-        name: "Arsip Digital",
-        data: [31, 40, 28, 51, 42, 109, 100, 91, 125, 90, 110, 95]
-      }
-    ]);
-  
-    return (
-      <div>
-        <Chart
-          options={options}
-          series={series}
-          type="area"
-          height={350}
-        />
-      </div>
-    );
-  };
+      ]);
+    
+      return (
+        <div>
+          <Chart
+            options={options}
+            series={series}
+            type="area"
+            height={350}
+          />
+        </div>
+      );
+    };
 
     return (
-<div className="wrapper">
+  <div className="wrapper">
   {/*sidebar wrapper */}
   <div className="sidebar-wrapper" data-simplebar="true">
     <div className="sidebar-header" style={{border: 'none', justifyContent: 'center'}}>
@@ -78,7 +77,7 @@ export default function DashboardPimpinan () {
       </div>
     </div>
     {/*navigation*/}
-    <ul className="metismenu p-3" id="menu">
+   <ul className="metismenu p-3" id="menu">
       <h6 className="ms-3 mb-3">MAIN MENU</h6>
       <li>
             <Link to="/dashboardPimpinan" className="link">
@@ -122,7 +121,7 @@ export default function DashboardPimpinan () {
       <nav className="navbar navbar-expand">
         <div className="mobile-toggle-menu"><i className="bx bx-menu" />
         </div>
-        <div className="search-bar flex-grow-1">
+        <div className="search-bar">
           <h4 className="mb-0">Selamat Datang</h4>
         </div>
         <div className="top-menu ms-auto">
@@ -134,7 +133,7 @@ export default function DashboardPimpinan () {
         </div>
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
-            <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
+            <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-10">
               <img src="/assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Pimpinan
             </button>
@@ -144,7 +143,8 @@ export default function DashboardPimpinan () {
     </div>
   </header>
   {/*end header */}
-  {/*start page wrapper */}
+  
+ {/*start page wrapper */}
   <div className="page-wrapper">
   <div className="page-content ml-0">
     <div className="d-flex align-items-center">
@@ -165,7 +165,7 @@ export default function DashboardPimpinan () {
       <Link to="/approvalPimpinan">
       <div className="user-box">
         <div className="col">
-          <button type="button" className="btn btn-primary px-5 radius-30">Approve Permintaan</button>
+          <button type="button" className="btn btn-primary px-5 radius-30">Pengajuan Peminjaman</button>
         </div>
       </div>
       </Link>
@@ -338,42 +338,44 @@ export default function DashboardPimpinan () {
         </div>
       </div>
     </div>
+    
+    {/* File Yang Banyak Diakses */}
     <div className="col d-flex mt-3">
       <div className="card radius-10 w-100">
         <div className="card-body-pim">
           <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
-            <li onClick={() => navigate("/dashboardPimpinan")} className={`nav-item ${tab === "FileTerbesar" ? "active" : ""}`} role="presentation" style={{width: '33%', cursor: 'pointer'}}>
-              <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
+            <li onClick={() => navigate("/dashboardPimpinan")} className={`nav-item ${tab === "FileTerbesar" ? "active" : ""}`} role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">File Terbesar</div>
                 </div>
-              </div>
+              </a>
             </li>
-            <li onClick={() => navigate("/dashboardPimpinan/FileBanyakDiakses")} className={`nav-item ${tab === "FileBanyakAkses" ? "active" : ""}`} role="presentation" style={{width: '33%', cursor: 'pointer'}}>
-              <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+            <li onClick={() => navigate("/dashboardPimpinan/FileBanyakDiakses")} className={`nav-item ${tab === "FileBanyakAkses" ? "active" : ""}`} role="presentation" style={{width: '33%'}}>
+              <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">File Yang Banyak Di Akses</div>
                 </div>
-              </div>
+              </a>
             </li>
-            <li onClick={() => navigate("/dashboardPimpinan/UserAkses")} className={`nav-item ${tab === "UserAkses" ? "active" : ""}`} role="presentation" style={{width: '33%', cursor: 'pointer'}}>
-              <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+            <li onClick={() => navigate("/dashboardPimpinan/UserAkses")} className={`nav-item ${tab === "UserAkses" ? "active" : ""}`} role="presentation" style={{width: '33%'}}>
+              <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">User Yang Sering Akses</div>
                 </div>
-              </div>
+              </a>
             </li>
           </ul>
-          {/* File Terbesar */}
+          
           <div className="kotak-file p-3 pt-0 pb-0">
             <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
               <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
-                <img src="/assets/images/iconpdf.png" className="img-pim"alt />
+                <img src="/assets/images/iconpdf.png" className="img-pim" alt />
               </div>
               <div className="col-md-10">
                 <div className="kanan pe-0" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
                   <h6 className="ms-3 mb-0">OJK</h6>
-                  <div className="d-flex align-items-center border p-2 radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
                     <div className>
                       <p className="mb-0" style={{color: 'white'}}>Digital</p>
                     </div>
@@ -408,7 +410,7 @@ export default function DashboardPimpinan () {
                   <h6 className="ms-3 mb-0">OJK</h6>
                   <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
                     <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                      <p className="mb-0" style={{color: 'white'}}>Fisik</p>
                     </div>
                   </div>
                 </div>
@@ -441,7 +443,7 @@ export default function DashboardPimpinan () {
                   <h6 className="ms-3 mb-0">OJK</h6>
                   <div className="d-flex align-items-center border p-2  radius-10" style={{marginRight: 10, background: '#3468F8', height: 35}}>	
                     <div className>
-                      <p className="mb-0" style={{color: 'white'}}>Digital</p>
+                      <p className="mb-0" style={{color: 'white'}}>Fisik</p>
                     </div>
                   </div>
                 </div>
@@ -504,6 +506,8 @@ export default function DashboardPimpinan () {
     </div>
     
         </div></div></div>
-    );
+
+    )
+  
 }
 

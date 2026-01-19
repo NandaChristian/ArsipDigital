@@ -133,7 +133,7 @@ export default function DashboardStaff() {
             </div>
             <div className="user-box" style={{border: 'none'}}>
               <div className="col">
-                <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
+                <button type="button" className="btn-avatar p-3 pt-1 pb-1">
                   <img src="/assets/images/Avatar.png" alt="Avatar" style={{marginRight: 10}} />
                   Pegawai
                 </button>
@@ -165,7 +165,7 @@ export default function DashboardStaff() {
             <Link to='/dataArsipStaff'>
             <div className="user-box">
               <div className="col">
-                <button type="button" className="btn btn-primary px-5 radius-30">
+                <button type="button" className="btn-pengajuan px-5">
                   Pengajuan Peminjaman
                 </button>
               </div>

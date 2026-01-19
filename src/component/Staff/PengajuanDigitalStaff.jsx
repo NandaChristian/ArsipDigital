@@ -20,7 +20,7 @@ export default function PengajuanDigitalStaff () {
     <ul className="metismenu p-3" id="menu">
           <h6 className="ms-3 mb-3">MAIN MENU</h6>
           <li>
-            <Link to="/dashboardStaff" className="link">
+            <Link to="/dashboardStaff" className={`link ${location.pathname === '/dashboardStaff' ? 'active' : ''}`}>
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
@@ -28,7 +28,7 @@ export default function PengajuanDigitalStaff () {
             </Link>
           </li>
           <li>
-            <Link to="/dataArsipStaff" className="link">
+            <Link to="/dataArsipStaff" className={`link ${location.pathname === '/dataArsipStaff' ? 'active' : ''}`}>
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Data Arsip" />
               </div>
@@ -36,7 +36,7 @@ export default function PengajuanDigitalStaff () {
             </Link>
           </li>
           <li>
-            <Link to="/logPengajuanStaff" className="link">
+            <Link to="/logPengajuanStaff" className={`link ${location.pathname === '/logPengajuanStaff' ? 'active' : ''}`}>
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Log Pengajuan" />
               </div>
@@ -44,7 +44,7 @@ export default function PengajuanDigitalStaff () {
             </Link>
           </li>
           <li>
-            <Link to="/logHistoryStaff" className="link">
+            <Link to="/logHistoryStaff" className={`link ${location.pathname === '/logHistoryStaff' ? 'active' : ''}`}>
               <div className="parent-icon">
                 <img src="/assets/images/history.png" alt="Log History" />
               </div>
@@ -67,14 +67,14 @@ export default function PengajuanDigitalStaff () {
         <div className="top-menu ms-auto">
           <ul className="navbar-nav align-items-center">
             <li className="nav-item dropdown dropdown-large">
-                <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
+                <img src="/assets/images/bell-dot.png" width="25px" height="25px" alt />
             </li>
           </ul>
         </div>
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
-            <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
-              <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
+            <button type="button" className="btn-avatar p-3 pt-1 pb-1">
+              <img src="/assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Pegawai
             </button>
           </div>
@@ -95,17 +95,17 @@ export default function PengajuanDigitalStaff () {
         <div className="d-flex align-items-center">
           <div className="search-bar flex-grow-1">
           <ul className="nav nav-pills mb-3" role="tablist">
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
-              <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
+            <li onClick={() => navigate("/LogPengajuanStaff")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+              <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/LogPengajuanStaff")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
+                  <div className="tab-title">Arsip Fisik</div>
                 </div>
               </div>
             </li>
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
-              <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+            <li onClick={() => navigate("/LogPengajuanStaff/PengajuanDigitalStaff")} className={`nav-item ${tab === "PengajuanDigitalStaff" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+              <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/LogPengajuanStaff/PengajuanDigitalStaff")} className={`tab-title ${tab === "PengajuanDigitalStaff" ? "active" : ""}`}>Arsip Digital</div>
+                  <div className="tab-title">Arsip Digital</div>
                 </div>
               </div>
             </li>
@@ -124,7 +124,7 @@ export default function PengajuanDigitalStaff () {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default function PengajuanDigitalStaff () {
                       <p className="mb-0">4 jam : 24 menit : 30 detik</p>
                     </div>
                     <div className>
-                      <img src="assets/images/clock.png" width={15} height={15} alt />
+                      <img src="/assets/images/clock.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -183,42 +183,42 @@ export default function PengajuanDigitalStaff () {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="80%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="80%" alt />
               </div>
             </div>
             <div className="d-flex mt-1">
               <div className="p-3 pt-0 pe-1">
-                <img src="assets/images/pin.png" width={15} height={15} alt />
+                <img src="/assets/images/pin.png" width={15} height={15} alt />
               </div>
               <div>
                 <p className="me-1">Gedung A</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lantai 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Ruang 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lemari 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Folder 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p>Nomor 1</p>
@@ -226,13 +226,13 @@ export default function PengajuanDigitalStaff () {
             </div>
             <div className="d-flex justify-content-between p-3 pb-0 pt-0">
               <div className="mb-3 me-3 w-50">
-                <button type="button" className="btn btn-primary px-5 radius-30" style={{width: '100%'}}>Lihat Arsip</button>
+                <button type="button" className="btn-arsip px-5 pb-2 pt-2" style={{width: '100%'}}>Lihat Arsip</button>
               </div>
               <div className="mb-3 me-3 w-50">
-                <button type="button" className="btn btn-outline-primary px-5 radius-30" style={{width: '100%'}}>Download Arsip</button>
+                <button type="button" className="btn-arsip px-5 pb-2 pt-2" style={{width: '100%'}}>Download Arsip</button>
               </div>
               <div className="mb-3 w-50">
-                <button type="button" className="btn btn-outline-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#kembaliDigital" style={{width: '100%'}}>Kembalikan Arsip</button>
+                <button type="button" className="btn-arsip px-5 pb-2 pt-2" data-bs-toggle="modal" data-bs-target="#kembaliDigital" style={{width: '100%'}}>Kembalikan Arsip</button>
               </div>
             </div>
           </div>
@@ -240,7 +240,7 @@ export default function PengajuanDigitalStaff () {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -261,7 +261,7 @@ export default function PengajuanDigitalStaff () {
                       <p className="mb-0">+4 jam : 24 menit : 30 detik</p>
                     </div>
                     <div className>
-                      <img src="assets/images/alert.png" width={15} height={15} alt />
+                      <img src="/assets/images/alert.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -302,42 +302,42 @@ export default function PengajuanDigitalStaff () {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="80%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="80%" alt />
               </div>
             </div>
             <div className="d-flex mt-1">
               <div className="p-3 pt-0 pe-1">
-                <img src="assets/images/pin.png" width={15} height={15} alt />
+                <img src="/assets/images/pin.png" width={15} height={15} alt />
               </div>
               <div>
                 <p className="me-1">Gedung A</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lantai 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Ruang 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lemari 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Folder 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p>Nomor 1</p>
@@ -345,7 +345,7 @@ export default function PengajuanDigitalStaff () {
             </div>
             <div className="d-flex justify-content-center p-3 pb-0 pt-0">
               <div className="mb-3 w-100">
-                <button type="button" className="btn btn-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#kembaliDigital" style={{width: '100%'}}>Kembalikan Arsip</button>
+                <button type="button" className="btn-kembali px-5 pb-2 pt-2" data-bs-toggle="modal" data-bs-target="#kembaliDigital" style={{width: '100%'}}>Kembalikan Arsip</button>
               </div>
             </div>
           </div>
@@ -353,7 +353,7 @@ export default function PengajuanDigitalStaff () {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -397,42 +397,42 @@ export default function PengajuanDigitalStaff () {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="80%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="80%" alt />
               </div>
             </div>
             <div className="d-flex mt-1">
               <div className="p-3 pt-0 pe-1">
-                <img src="assets/images/pin.png" width={15} height={15} alt />
+                <img src="/assets/images/pin.png" width={15} height={15} alt />
               </div>
               <div>
                 <p className="me-1">Gedung A</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lantai 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Ruang 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lemari 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Folder 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p>Nomor 1</p>
@@ -443,7 +443,7 @@ export default function PengajuanDigitalStaff () {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -459,7 +459,7 @@ export default function PengajuanDigitalStaff () {
                       <p className="mb-0">Telah Dikembalikan Tepat Waktu</p>
                     </div>
                     <div className>
-                      <img src="assets/images/check.png" width={15} height={15} alt />
+                      <img src="/assets/images/check.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -497,42 +497,42 @@ export default function PengajuanDigitalStaff () {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="80%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="80%" alt />
               </div>
             </div>
             <div className="d-flex mt-1">
               <div className="p-3 pt-0 pe-1">
-                <img src="assets/images/pin.png" width={15} height={15} alt />
+                <img src="/assets/images/pin.png" width={15} height={15} alt />
               </div>
               <div>
                 <p className="me-1">Gedung A</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lantai 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Ruang 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lemari 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Folder 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p>Nomor 1</p>
@@ -543,7 +543,7 @@ export default function PengajuanDigitalStaff () {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -559,7 +559,7 @@ export default function PengajuanDigitalStaff () {
                       <p className="mb-0">Telah Dikembalikan Melebihi Deadline</p>
                     </div>
                     <div className>
-                      <img src="assets/images/message-warning.png" width={15} height={15} alt />
+                      <img src="/assets/images/message-warning.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -600,42 +600,42 @@ export default function PengajuanDigitalStaff () {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="60%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="60%" alt />
               </div>
             </div>
             <div className="d-flex mt-1">
               <div className="p-3 pt-0 pe-1">
-                <img src="assets/images/pin.png" width={15} height={15} alt />
+                <img src="/assets/images/pin.png" width={15} height={15} alt />
               </div>
               <div>
                 <p className="me-1">Gedung A</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lantai 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Ruang 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Lemari 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p className="me-1">Folder 1</p>
               </div>
               <div>
-                <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+                <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
               </div>
               <div>
                 <p>Nomor 1</p>
@@ -660,54 +660,52 @@ export default function PengajuanDigitalStaff () {
               </li>
             </ul>
           </nav>
-          {/* Modal Berhasil Kembali Fisik*/}
-          <div className="col">
-            <div className="modal fade" id="kembaliFisik" tabIndex={-1} aria-hidden="true">
-              <div className="modal-dialog modal-sm">
-                <div className="modal-content">
-                  <div className="modal-header" style={{borderBottom: 'none'}}>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-                  </div>
-                  <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
-                    <h5 className="modal-title" style={{marginBottom: 15}}>Pengembalian Arsip Fisik</h5>
-                    <img src="assets/images/fileIcon.png" />
-                    <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Anda telah melebihi waktu peminjaman. Segera kembalikan arsip fisik yang anda pinjam pada petugas kami!</h6>
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Alasan Terlambat</label>
-                    <input type className="form-control radius-30" placeholder="Tuliskan alasan terlambat melakukan pengembalian" />
-                  </div>
-                  <div className="modal-footer" style={{borderTop: 'none'}}>
-                    <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 50}}>Kembalikan Arsip</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Modal Berhasil Kembali Digital*/}
+          
+          {/* Modal Kembali Digital*/}
           <div className="col">
             <div className="modal fade" id="kembaliDigital" tabIndex={-1} aria-hidden="true">
-              <div className="modal-dialog modal-sm">
+              <div className="modal-dialog modal-sm-2">
                 <div className="modal-content">
                   <div className="modal-header" style={{borderBottom: 'none'}}>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                   </div>
                   <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
                     <h5 className="modal-title" style={{marginBottom: 15}}>Pengembalian Arsip Digital</h5>
-                    <img src="assets/images/fileIcon.png" />
-                    <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Anda telah melebihi waktu peminjaman. Segera kembalikan arsip digital yang anda pinjam pada petugas kami!</h6>
+                    <img src="/assets/images/fileIcon.png" />
+                    <span className="modal-isi" style={{marginBottom: 0, marginTop: 15, textAlign: 'center'}}>Anda telah melebihi waktu peminjaman. Segera kembalikan arsip digital yang anda pinjam pada petugas kami!</span>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 p-3">
                     <label className="form-label">Alasan Terlambat</label>
                     <input type className="form-control radius-30" placeholder="Tuliskan alasan terlambat melakukan pengembalian" />
                   </div>
                   <div className="modal-footer" style={{borderTop: 'none'}}>
-                    <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 50}}>Kembalikan Arsip</button>
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#berhasilKembaliDigital" style={{width: '100%', borderRadius: 50}}>Kembalikan Arsip</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Modal Berhasil Kembali Digital*/}
+      <div className="col">
+        <div className="modal fade" id="berhasilKembaliDigital" tabIndex={-1} aria-hidden="true">
+          <div className="modal-dialog modal-sm">
+            <div className="modal-content">
+              <div className="modal-header" style={{borderBottom: 'none'}}>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+              </div>
+              <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+                <h5 className="modal-title" style={{marginBottom: 15}}>Pengembalian Arsip Digital</h5>
+                <img src="/assets/images/checkmark.png" />
+                <span className="modal-isi" style={{marginBottom: 0, marginTop: 15, textAlign: 'center'}}>Pengembalian arsip digital telah berhasil dan telah diterima oleh petugas kami.</span>
+              </div>
+              <div className="modal-footer" style={{borderTop: 'none'}}>
+                <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 50}}>Oke</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
       </div></div></div>
 

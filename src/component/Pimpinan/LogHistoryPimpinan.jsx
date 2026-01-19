@@ -26,14 +26,14 @@ export default function LogHistoryPimpinan () {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Data User" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/menuArsipPimpinan" className="link">
               <div className="parent-icon">
@@ -67,7 +67,7 @@ export default function LogHistoryPimpinan () {
           <ul className="navbar-nav align-items-center">
             <li className="nav-item dropdown dropdown-large">
               <a className="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
+                <img src="/assets/images/bell-dot.png" width="25px" height="25px" alt />
               </a>
             </li>
           </ul>
@@ -75,7 +75,7 @@ export default function LogHistoryPimpinan () {
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
             <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
-              <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
+              <img src="/assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Pimpinan
             </button>
           </div>
@@ -88,27 +88,27 @@ export default function LogHistoryPimpinan () {
   <div className="page-wrapper">
     <div className="page-content">
       <div className="d-flex align-items-center">
-        <Link to="/menuArsipPimpinan">
+        <Link to="/menuArsipPimpinan" className="link">
         <div className="search-bar flex-grow-1 d-flex align-items-center" style={{marginBottom: 10}}>
-          <img src="assets/images/arrow-left.png" style={{width: 30, height: 30, marginRight: 10}} />
-          <h4 style={{marginBottom: 0}}>Log History</h4>
+          <img src="/assets/images/arrow-left.png" style={{width: 30, height: 30, marginRight: 10}} />
+          <h4 style={{marginBottom: 0, color: 'black'}}>Log History</h4>
         </div>
         </Link>
       </div>
       <div className="d-flex align-items-center mb-3">
         <div className="search-bar flex-grow-1">
           <ul className="nav nav-pills" role="tablist">
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+            <li onClick={() => navigate("/menuArsipPimpinan/logHistoryPimpinan")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div onClick={() => navigate("/menuArsipPimpinan/logHistoryPimpinan")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
+                  <div className="tab-title">Arsip Fisik</div>
                 </div>
               </div>
             </li>
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+            <li onClick={() => navigate("/menuArsipPimpinan/logHistoryPimpinan/HistoryDigitalPimpinan")} className={`nav-item ${tab === "HistoryDigitalPimpinan" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div onClick={() => navigate("/menuArsipPimpinan/logHistoryPimpinan/HistoryDigitalPimpinan")} className={`tab-title ${tab === "HistoryDigitalPimpinan" ? "active" : ""}`}>Arsip Digital</div>
+                  <div className="tab-title">Arsip Digital</div>
                 </div>
               </div>
             </li>
@@ -127,7 +127,7 @@ export default function LogHistoryPimpinan () {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -148,7 +148,7 @@ export default function LogHistoryPimpinan () {
                     <p className="mb-0">4 jam : 24 menit : 30 detik</p>
                   </div>
                   <div className>
-                    <img src="assets/images/clock.png" width={15} height={15} alt />
+                    <img src="/assets/images/clock.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -191,37 +191,37 @@ export default function LogHistoryPimpinan () {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -232,7 +232,7 @@ export default function LogHistoryPimpinan () {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -253,7 +253,7 @@ export default function LogHistoryPimpinan () {
                     <p className="mb-0">+4 jam : 24 menit : 30 detik</p>
                   </div>
                   <div className>
-                    <img src="assets/images/alert.png" width={15} height={15} alt />
+                    <img src="/assets/images/alert.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -299,37 +299,37 @@ export default function LogHistoryPimpinan () {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -345,7 +345,7 @@ export default function LogHistoryPimpinan () {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -394,37 +394,37 @@ export default function LogHistoryPimpinan () {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -435,7 +435,7 @@ export default function LogHistoryPimpinan () {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -451,7 +451,7 @@ export default function LogHistoryPimpinan () {
                     <p className="mb-0">Telah Dikembalikan Tepat Waktu</p>
                   </div>
                   <div className>
-                    <img src="assets/images/check.png" width={15} height={15} alt />
+                    <img src="/assets/images/check.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -494,37 +494,37 @@ export default function LogHistoryPimpinan () {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -535,7 +535,7 @@ export default function LogHistoryPimpinan () {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -551,7 +551,7 @@ export default function LogHistoryPimpinan () {
                     <p className="mb-0">Telah Dikembalikan Melebihi Deadline</p>
                   </div>
                   <div className>
-                    <img src="assets/images/message-warning.png" width={15} height={15} alt />
+                    <img src="/assets/images/message-warning.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -597,37 +597,37 @@ export default function LogHistoryPimpinan () {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -663,7 +663,7 @@ export default function LogHistoryPimpinan () {
                   </div>
                   <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
                     <h5 className="modal-title" style={{marginBottom: 15}}>Notifikasi Pengembalian</h5>
-                    <img src="assets/images/bell icon.png" />
+                    <img src="/assets/images/bell icon.png" />
                     <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Notifikasi pengembalian kepada peminjam telah berhasil terkirim.</h6>
                   </div>
                   <div className="modal-footer" style={{borderTop: 'none'}}>

@@ -5,7 +5,7 @@ export default function ApprovalDigital() {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -26,7 +26,7 @@ export default function ApprovalDigital() {
                       <p className="mb-0">4 jam : 24 menit : 30 detik</p>
                     </div>
                     <div className>
-                      <img src="assets/images/clock.png" width={15} height={15} alt />
+                      <img src="/assets/images/clock.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -50,7 +50,7 @@ export default function ApprovalDigital() {
                   <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
                 </div>		
                 <div>
-                  <img src="assets/images/qrCode.png" width={16} height={16} alt srcSet />
+                  <img src="/assets/images/qrCode.png" width={16} height={16} alt srcSet />
                   <h7 className="mb-1 font-weight-bold">Kode Arsip</h7> : <h7 className="mb-0 text-secondary">12</h7>
                 </div>		
               </div>
@@ -69,7 +69,7 @@ export default function ApprovalDigital() {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="40%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="40%" alt />
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function ApprovalDigital() {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default function ApprovalDigital() {
                       <p className="mb-0">+4 jam : 24 menit : 30 detik</p>
                     </div>
                     <div className>
-                      <img src="assets/images/alert.png" width={15} height={15} alt />
+                      <img src="/assets/images/alert.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function ApprovalDigital() {
                   <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
                 </div>	
                 <div>
-                  <img src="assets/images/qrCode.png" width={16} height={16} alt srcSet />
+                  <img src="/assets/images/qrCode.png" width={16} height={16} alt srcSet />
                   <h7 className="mb-1 font-weight-bold">Kode Arsip</h7> : <h7 className="mb-0 text-secondary">12</h7>
                 </div>		
               </div>
@@ -144,7 +144,7 @@ export default function ApprovalDigital() {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="40%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="40%" alt />
               </div>
             </div>
             <div className="d-flex justify-content-center p-3 pb-0 pt-0">
@@ -157,7 +157,7 @@ export default function ApprovalDigital() {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function ApprovalDigital() {
                   <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
                 </div>		
                 <div>
-                  <img src="assets/images/qrCode.png" width={16} height={16} alt srcSet />
+                  <img src="/assets/images/qrCode.png" width={16} height={16} alt srcSet />
                   <h7 className="mb-1 font-weight-bold">Kode Arsip</h7> : <h7 className="mb-0 text-secondary">12</h7>
                 </div>	
               </div>
@@ -206,7 +206,7 @@ export default function ApprovalDigital() {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="50%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="50%" alt />
               </div>
             </div>
             <div className="p-3 pt-0">
@@ -216,11 +216,11 @@ export default function ApprovalDigital() {
                 </div>
                 <div className="w-50">
                   <button type="button" className="btn btn-primary radius-30" style={{width: '100%'}}>
-                    <img src="assets/images/circle-check-big.png" alt width="16px" height="16px" style={{marginRight: 10}} />Approve</button>
+                    <img src="/assets/images/circle-check-big.png" alt width="16px" height="16px" style={{marginRight: 10}} />Approve</button>
                 </div>	
                 <div className="w-50">
                   <button type="button" className="btn btn-danger radius-30" style={{width: '100%'}}>
-                    <img src="assets/images/circle-x.png" width="16px" height="16px" style={{marginRight: 10}} alt />Tolak</button>
+                    <img src="/assets/images/circle-x.png" width="16px" height="16px" style={{marginRight: 10}} alt />Tolak</button>
                 </div>
               </div>
             </div>
@@ -229,7 +229,7 @@ export default function ApprovalDigital() {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -245,7 +245,7 @@ export default function ApprovalDigital() {
                       <p className="mb-0">Telah Dikembalikan Tepat Waktu</p>
                     </div>
                     <div className>
-                      <img src="assets/images/check.png" width={15} height={15} alt />
+                      <img src="/assets/images/check.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -269,7 +269,7 @@ export default function ApprovalDigital() {
                   <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
                 </div>		
                 <div>
-                  <img src="assets/images/qrCode.png" width={16} height={16} alt srcSet />
+                  <img src="/assets/images/qrCode.png" width={16} height={16} alt srcSet />
                   <h7 className="mb-1 font-weight-bold">Kode Arsip</h7> : <h7 className="mb-0 text-secondary">12</h7>
                 </div>	
               </div>
@@ -288,7 +288,7 @@ export default function ApprovalDigital() {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="40%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="40%" alt />
               </div>
             </div>
           </div>
@@ -296,7 +296,7 @@ export default function ApprovalDigital() {
             <div className="top d-flex align-items-center justify-content-between p-3">
               <div className="kiri" style={{alignItems: 'center'}}>
                 <div className="d-flex align-items-center">
-                  <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                  <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                   <h6 className="ms-3 mb-0">PP Investasi</h6>
                 </div>
               </div>
@@ -312,7 +312,7 @@ export default function ApprovalDigital() {
                       <p className="mb-0">Telah Dikembalikan Melebihi Deadline</p>
                     </div>
                     <div className>
-                      <img src="assets/images/message-warning.png" width={15} height={15} alt />
+                      <img src="/assets/images/message-warning.png" width={15} height={15} alt />
                     </div>
                   </div>
                 </div>
@@ -336,7 +336,7 @@ export default function ApprovalDigital() {
                   <h7 className="mb-1 font-weight-bold">Peminjam</h7> : <h7 className="mb-0 text-secondary">Citra</h7>
                 </div>		
                 <div>
-                  <img src="assets/images/qrCode.png" width={16} height={16} alt srcSet />
+                  <img src="/assets/images/qrCode.png" width={16} height={16} alt srcSet />
                   <h7 className="mb-1 font-weight-bold">Kode Arsip</h7> : <h7 className="mb-0 text-secondary">12</h7>
                 </div>	
               </div>
@@ -358,7 +358,7 @@ export default function ApprovalDigital() {
                 </div>
               </div>
               <div>
-                <img src="assets/images/qr-code.png" width="70%" height="30%" alt />
+                <img src="/assets/images/qr-code.png" width="70%" height="30%" alt />
               </div>
             </div>
           </div>
@@ -390,7 +390,7 @@ export default function ApprovalDigital() {
                   </div>
                   <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
                     <h5 className="modal-title" style={{marginBottom: 15}}>Notifikasi Pengembalian</h5>
-                    <img src="assets/images/bell icon.png" />
+                    <img src="/assets/images/bell icon.png" />
                     <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Notifikasi pengembalian kepada peminjam telah berhasil terkirim.</h6>
                   </div>
                   <div className="modal-footer" style={{borderTop: 'none'}}>

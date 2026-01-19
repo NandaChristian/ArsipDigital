@@ -87,14 +87,14 @@ export default function UserAkses () {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPetugas" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/dataArsipPetugas" className="link">
               <div className="parent-icon">
@@ -135,14 +135,14 @@ export default function UserAkses () {
         <div className="top-menu ms-auto">
           <ul className="navbar-nav align-items-center">
             <li className="nav-item dropdown dropdown-large">
-                <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
+                <img src="/assets/images/bell-dot.png" width="25px" height="25px" alt />
             </li>
           </ul>
         </div>
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
             <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-10">
-              <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
+              <img src="/assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Petugas
             </button>
           </div>
@@ -165,12 +165,12 @@ export default function UserAkses () {
           </li>
         </ul>
       </div>
-      <img src="assets/images/Frame 14.png" className="user-img" alt="user avatar" />
+      <img src="/assets/images/Frame 14.png" className="user-img" alt="user avatar" />
       <div className="user-info ps-3">
         <p className="user-name mb-0">Rabu</p>
         <p className="designattion mb-0">November 2025</p>
       </div>
-      <Link to="/approvalPimpinan">
+      <Link to="/approvalPetugas">
       <div className="user-box">
         <div className="col">
           <button type="button" className="btn btn-primary px-5 radius-30">Pengajuan Peminjaman</button>
@@ -187,7 +187,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="/assets/images/file-archive.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">20</h4>
                 <p className="mb-0 text-secondary">Total Arsip</p>
@@ -199,7 +199,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/list.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="/assets/images/list.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">12</h4>
                 <p className="mb-0 text-secondary">Total Kategori</p>
@@ -211,7 +211,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/users.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="/assets/images/users.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">11</h4>
                 <p className="mb-0 text-secondary">Total Petugas</p>
@@ -223,7 +223,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/users.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="/assets/images/users.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">8</h4>
                 <p className="mb-0 text-secondary">Total User</p>
@@ -235,7 +235,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-success text-success mb-3"><img src="assets/images/circle-check.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-success text-success mb-3"><img src="/assets/images/circle-check.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">2</h4>
                 <p className="mb-0 text-secondary">Permintaan Disetujui</p>
@@ -247,7 +247,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/circle-x.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="/assets/images/circle-x.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">2</h4>
                 <p className="mb-0 text-secondary">Permintaan Ditolak</p>
@@ -259,7 +259,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="/assets/images/file-archive.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">2</h4>
                 <p className="mb-0 text-secondary">File <br />Dipinjam</p>
@@ -271,7 +271,7 @@ export default function UserAkses () {
           <div className="card radius-10" style={{height: '100%'}}>
             <div className="card-body">
               <div className="text-center">
-                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
+                <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="/assets/images/file-archive.png" className="logo-item" alt />
                 </div>
                 <h4 className="my-1">2</h4>
                 <p className="mb-0 text-secondary">File Belum Dikembalikan</p>
@@ -283,7 +283,7 @@ export default function UserAkses () {
       <div className="col" style={{width: '20%'}}>
         <div className="card" style={{height: '100%', backgroundColor: '#3468F8', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <div className="text-center">
-              <div className="widgets-icons rounded-circle mx-auto bg-white text-white mb-3"><img src="assets/images/file-clock.png" className="logo-item" alt />
+              <div className="widgets-icons rounded-circle mx-auto bg-white text-white mb-3"><img src="/assets/images/file-clock.png" className="logo-item" alt />
               </div>
               <h4 className="my-1 text-white">2</h4>
               <p className="mb-0 text-white">Permintaan Peminjaman</p>
@@ -308,7 +308,7 @@ export default function UserAkses () {
                 <p className="mb-0 font-13 text-white">OJK</p>
               </div>
               <div className="font-22 ms-auto">
-                <button type="button" className="btn-tindakan p-2 pe-3 ps-3">Tindakan <img src="assets/images/arrow-up-right.png" alt /></button>
+                <button type="button" className="btn-tindakan p-2 pe-3 ps-3">Tindakan <img src="/assets/images/arrow-up-right.png" alt /></button>
               </div>
             </div>
           </div>
@@ -316,7 +316,7 @@ export default function UserAkses () {
             <div className="row">
               <div className="d-flex justify-content-center align-items-center" style={{width: '100%'}}>
                 <div className>
-                  <img src="assets/images/stackfiles.png" width={148} height={120} alt />
+                  <img src="/assets/images/stackfiles.png" width={148} height={120} alt />
                 </div>
               </div>
               <div className="colom d-flex p-4" style={{flexDirection: 'column'}}>
@@ -380,7 +380,7 @@ export default function UserAkses () {
                 1
               </div>
               <div className="chat-user-online">
-                <img src="assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
+                <img src="/assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
               </div>
               <div className="flex-grow-1 ms-3 align-items-center d-flex">
                 <h3 className="mb-0 chat-title">Citra</h3>
@@ -392,7 +392,7 @@ export default function UserAkses () {
                 2
               </div>
               <div className="chat-user-online">
-                <img src="assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
+                <img src="/assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
               </div>
               <div className="flex-grow-1 ms-3 align-items-center d-flex">
                 <h3 className="mb-0 chat-title">Iskandar Rizqi</h3>
@@ -404,7 +404,7 @@ export default function UserAkses () {
                 3
               </div>
               <div className="chat-user-online">
-                <img src="assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
+                <img src="/assets/images/avatars/avatar-2.png" width={42} height={42} className="rounded-circle" alt />
               </div>
               <div className="flex-grow-1 ms-3 align-items-center d-flex">
                 <h3 className="mb-0 chat-title">User</h3>

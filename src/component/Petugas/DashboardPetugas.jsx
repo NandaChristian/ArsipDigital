@@ -88,14 +88,14 @@ export default function DashboardPetugas () {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPetugas" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/dataArsipPetugas" className="link">
               <div className="parent-icon">
@@ -171,7 +171,7 @@ export default function DashboardPetugas () {
         <p className="user-name mb-0">Rabu</p>
         <p className="designattion mb-0">November 2025</p>
       </div>
-      <Link to="/approvalPimpinan">
+      <Link to="/approvalPetugas">
       <div className="user-box">
         <div className="col">
           <button type="button" className="btn btn-primary px-5 radius-30">Pengajuan Peminjaman</button>
@@ -351,21 +351,21 @@ export default function DashboardPetugas () {
       <div className="card radius-10 w-100">
         <div className="card-body-pim">
           <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
-            <li onClick={() => navigate("/dashboardPetugas")} className={`nav-item ${tab === "FileTerbesar" ? "active" : ""}`} role="presentation" style={{width: '33%'}}>
+            <li onClick={() => navigate("/dashboardPetugas")} className={`nav-item ${tab === "FileTerbesar" ? "active" : ""}`} role="presentation" style={{width: '33%', cursor:'pointer'}}>
               <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">File Terbesar</div>
                 </div>
               </div>
             </li>
-            <li onClick={() => navigate("/dashboardPetugas/FileBanyakDiakses")} className={`nav-item ${tab === "FileBanyakAkses" ? "active" : ""}`} role="presentation" style={{width: '33%'}}>
+            <li onClick={() => navigate("/dashboardPetugas/FileBanyakDiakses")} className={`nav-item ${tab === "FileBanyakAkses" ? "active" : ""}`} role="presentation" style={{width: '33%', cursor: 'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">File Yang Banyak Di Akses</div>
                 </div>
               </div>
             </li>
-            <li onClick={() => navigate("/dashboardPetugas/UserAkses")} className={`nav-item ${tab === "UserAkses" ? "active" : ""}`} role="presentation" style={{width: '33%'}}>
+            <li onClick={() => navigate("/dashboardPetugas/UserAkses")} className={`nav-item ${tab === "UserAkses" ? "active" : ""}`} role="presentation" style={{width: '33%', cursor: 'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">User Yang Sering Akses</div>

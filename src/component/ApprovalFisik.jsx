@@ -5,7 +5,7 @@ export default function ApprovalFisik() {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -26,7 +26,7 @@ export default function ApprovalFisik() {
                     <p className="mb-0">4 jam : 24 menit : 30 detik</p>
                   </div>
                   <div className>
-                    <img src="assets/images/clock.png" width={15} height={15} alt />
+                    <img src="/assets/images/clock.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -69,37 +69,37 @@ export default function ApprovalFisik() {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -110,7 +110,7 @@ export default function ApprovalFisik() {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function ApprovalFisik() {
                     <p className="mb-0">+4 jam : 24 menit : 30 detik</p>
                   </div>
                   <div className>
-                    <img src="assets/images/alert.png" width={15} height={15} alt />
+                    <img src="/assets/images/alert.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -177,37 +177,37 @@ export default function ApprovalFisik() {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -223,7 +223,7 @@ export default function ApprovalFisik() {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -272,37 +272,37 @@ export default function ApprovalFisik() {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -315,11 +315,11 @@ export default function ApprovalFisik() {
               </div>
               <div className="w-50">
                 <button type="button" className="btn btn-primary radius-30" style={{width: '100%'}}>
-                  <img src="assets/images/circle-check-big.png" alt width="16px" height="16px" style={{marginRight: 10}} />Approve</button>
+                  <img src="/assets/images/circle-check-big.png" alt width="16px" height="16px" style={{marginRight: 10}} />Approve</button>
               </div>	
               <div className="w-50">
                 <button type="button" className="btn btn-danger radius-30" style={{width: '100%'}}>
-                  <img src="assets/images/circle-x.png" width="16px" height="16px" style={{marginRight: 10}} alt />Tolak</button>
+                  <img src="/assets/images/circle-x.png" width="16px" height="16px" style={{marginRight: 10}} alt />Tolak</button>
               </div>
             </div>
           </div>
@@ -328,7 +328,7 @@ export default function ApprovalFisik() {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -377,37 +377,37 @@ export default function ApprovalFisik() {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -418,7 +418,7 @@ export default function ApprovalFisik() {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -434,7 +434,7 @@ export default function ApprovalFisik() {
                     <p className="mb-0">Telah Dikembalikan Tepat Waktu</p>
                   </div>
                   <div className>
-                    <img src="assets/images/check.png" width={15} height={15} alt />
+                    <img src="/assets/images/check.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -477,37 +477,37 @@ export default function ApprovalFisik() {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -518,7 +518,7 @@ export default function ApprovalFisik() {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -534,7 +534,7 @@ export default function ApprovalFisik() {
                     <p className="mb-0">Telah Dikembalikan Melebihi Deadline</p>
                   </div>
                   <div className>
-                    <img src="assets/images/message-warning.png" width={15} height={15} alt />
+                    <img src="/assets/images/message-warning.png" width={15} height={15} alt />
                   </div>
                 </div>
               </div>
@@ -580,37 +580,37 @@ export default function ApprovalFisik() {
           </div>
           <div className="d-flex mt-1">
             <div className="p-3 pt-0 pe-1">
-              <img src="assets/images/pin.png" width={15} height={15} alt />
+              <img src="/assets/images/pin.png" width={15} height={15} alt />
             </div>
             <div>
               <p className="me-1">Gedung A</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lantai 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Ruang 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Lemari 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p className="me-1">Folder 1</p>
             </div>
             <div>
-              <img src="assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
+              <img src="/assets/images/Vector.png" style={{marginRight: 5}} width={5} height={10} alt />
             </div>
             <div>
               <p>Nomor 1</p>
@@ -646,7 +646,7 @@ export default function ApprovalFisik() {
                   </div>
                   <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
                     <h5 className="modal-title" style={{marginBottom: 15}}>Notifikasi Pengembalian</h5>
-                    <img src="assets/images/bell icon.png" />
+                    <img src="/assets/images/bell icon.png" />
                     <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Notifikasi pengembalian kepada peminjam telah berhasil terkirim.</h6>
                   </div>
                   <div className="modal-footer" style={{borderTop: 'none'}}>
