@@ -1,5 +1,5 @@
 
-import './App.css'
+import './App.css';
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./component/Login.jsx";
@@ -8,12 +8,18 @@ import DataArsipStaff from './component/Staff/DataArsipStaff.jsx';
 import LogPengajuanStaff from './component/Staff/LogPengajuanStaff.jsx';
 import LogHistoryStaff from './component/Staff/logHistoryStaff.jsx';
 import LantaiStaff from './component/Staff/LantaiStaff.jsx';
+import RuangStaff from './component/Staff/RuangStaff.jsx';
+import DetailArsipFisik from './component/Staff/DetailArsipFisik.jsx';
+import DetailArsipDigital from './component/Staff/DetailArsipDigital.jsx';
+import LemariStaff from './component/Staff/LemariStaff.jsx';
+import RakStaff from './component/Staff/RakStaff.jsx';
 import ArsipDigitalStaff from './component/Staff/ArsipDigitalStaff.jsx';
 import PengajuanDigitalStaff from './component/Staff/PengajuanDigitalStaff.jsx';
+import HistoryDigitalStaff from './component/Staff/HistoryDigitalStaff.jsx';
 
 
 import DashboardPimpinan from './component/Pimpinan/DashboardPimpinan.jsx';
-import DataUserPimpinan from './component/Pimpinan/DataUserPimpinan.jsx';
+// import DataUserPimpinan from './component/Pimpinan/DataUserPimpinan.jsx';
 import MenuArsipPimpinan from './component/Pimpinan/MenuArsipPimpinan.jsx';
 import ApprovalPimpinan from './component/Pimpinan/ApprovalPimpinan.jsx';
 import DataArsipPimpinan from './component/Pimpinan/DataArsipPimpinan.jsx';
@@ -22,13 +28,15 @@ import RiwayatUnduh from './component/Pimpinan/RiwayatUnduh.jsx';
 import ArsipDigitalPimpinan from './component/Pimpinan/ArsipDigitalPimpinan.jsx';
 import HistoryDigitalPimpinan from './component/Pimpinan/HistoryDigitalPimpinan.jsx';
 import ApprovalDigitalPimpinan from './component/Pimpinan/ApprovalDigitalPimpinan.jsx';
+import FileBanyakDiaksesPim from './component/Pimpinan/FileBanyakDiakses.jsx';
+import UserAksesPim from './component/Pimpinan/UserAkses.jsx';
 
 
 import DashboardPetugas from './component/Petugas/DashboardPetugas.jsx';
 import DataArsipPetugas from './component/Petugas/DataArsipPetugas.jsx';
 import DataMaster from './component/Petugas/DataMaster.jsx';
 import ApprovalPetugas from './component/Petugas/ApprovalPetugas.jsx';
-import DataUserPetugas from './component/Petugas/DataUserPetugas.jsx';
+// import DataUserPetugas from './component/Petugas/DataUserPetugas.jsx';
 import ArsipDigitalPetugas from './component/Petugas/ArsipDigitalPetugas.jsx';
 import ApprovalDigitalPetugas from './component/Petugas/ApprovalDigitalPetugas.jsx';
 import FileBanyakDiakses from './component/Petugas/FileBanyakDiakses.jsx';
@@ -114,10 +122,55 @@ export default function App() {
       />
 
       <Route
+        path="/dataArsipStaff/ArsipDigitalStaff/detailDigitalStaff"
+        element={
+          <ProtectedRoute>
+            <DetailArsipDigital />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
         path="/dataArsipStaff/lantaiStaff"
         element={
           <ProtectedRoute>
             <LantaiStaff />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dataArsipStaff/ruangStaff"
+        element={
+          <ProtectedRoute>
+            <RuangStaff />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dataArsipStaff/ruangStaff/lemariStaff"
+        element={
+          <ProtectedRoute>
+            <LemariStaff />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dataArsipStaff/lemariStaff/rakStaff"
+        element={
+          <ProtectedRoute>
+            <RakStaff />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/dataArsipStaff/detailFisikStaff"
+        element={
+          <ProtectedRoute>
+            <DetailArsipFisik />
           </ProtectedRoute>
         }
       />
@@ -148,11 +201,38 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+
       <Route
+        path="/logHistoryStaff/HistoryDigitalStaff"
+        element={
+          <ProtectedRoute>
+            <HistoryDigitalStaff />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* <Route
         path="/dataUserPimpinan"
         element={
           <ProtectedRoute>
             <DataUserPimpinan />
+          </ProtectedRoute>
+        }
+      /> */}
+
+      <Route
+        path="/dashboardPimpinan/FileBanyakDiakses"
+        element={
+          <ProtectedRoute>
+            <FileBanyakDiaksesPim />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboardPimpinan/UserAkses"
+        element={
+          <ProtectedRoute>
+            <UserAksesPim />
           </ProtectedRoute>
         }
       />
@@ -374,14 +454,14 @@ export default function App() {
         }
       />
 
-      <Route
+      {/* <Route
         path="/dataUserPetugas"
         element={
           <ProtectedRoute>
             <DataUserPetugas />
           </ProtectedRoute>
         }
-      />
+      /> */}
 
       </Routes>
     

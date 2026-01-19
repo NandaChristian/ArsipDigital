@@ -28,14 +28,14 @@ export default function ApprovalPetugas() {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPetugas" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/dataArsipPetugas" className="link">
               <div className="parent-icon">
@@ -76,14 +76,14 @@ export default function ApprovalPetugas() {
         <div className="top-menu ms-auto">
           <ul className="navbar-nav align-items-center">
             <li className="nav-item dropdown dropdown-large">
-                <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
+                <img src="/assets/images/bell-dot.png" width="25px" height="25px" alt />
             </li>
           </ul>
         </div>
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
             <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
-              <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
+              <img src="/assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Petugas
             </button>
           </div>
@@ -102,14 +102,14 @@ export default function ApprovalPetugas() {
       <div className="d-flex align-items-center mb-3">
         <div className="search-bar flex-grow-1">
           <ul className="nav nav-pills" role="tablist">
-            <li onClick={() => navigate("/approvalPetugas")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{width: '50%'}}>
+            <li onClick={() => navigate("/approvalPetugas")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">Arsip Fisik</div>
                 </div>
               </div>
             </li>
-            <li onClick={() => navigate("/approvalPetugas/approvalDigitalPetugas")} className={`nav-item ${tab === "Arsip Digital" ? "active" : ""}`} role="presentation" style={{width: '50%'}}>
+            <li onClick={() => navigate("/approvalPetugas/approvalDigitalPetugas")} className={`nav-item ${tab === "Arsip Digital" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor:'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
                   <div className="tab-title">Arsip Digital</div>

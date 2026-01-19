@@ -73,7 +73,7 @@ export default function LogPengajuanStaff () {
         </div>
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
-            <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
+            <button type="button" className="btn-avatar p-3 pt-1 pb-1">
               <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Pegawai
             </button>
@@ -94,17 +94,17 @@ export default function LogPengajuanStaff () {
       <div className="d-flex align-items-center mb-3">
         <div className="search-bar flex-grow-1">
           <ul className="nav nav-pills mb-3" role="tablist">
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+            <li onClick={() => navigate("/LogPengajuanStaff")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div onClick={() => navigate("/LogPengajuanStaff")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
+                  <div className="tab-title">Arsip Fisik</div>
                 </div>
               </div>
             </li>
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+            <li onClick={() => navigate("/LogPengajuanStaff/PengajuanDigitalStaff")} className={`nav-item ${tab === "PengajuanDigitalStaff" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/LogPengajuanStaff/PengajuanDigitalStaff")} className={`tab-title ${tab === "PengajuanDigitalStaff" ? "active" : ""}`}>Arsip Digital</div>
+                  <div className="tab-title">Arsip Digital</div>
                 </div>
               </div>
             </li>
@@ -222,13 +222,13 @@ export default function LogPengajuanStaff () {
           </div>
           <div className="d-flex justify-content-between p-3 pb-0 pt-0">
             <div className="mb-3 me-3 w-50">
-              <button type="button" className="btn btn-primary px-5 radius-30" style={{width: '100%'}}>Lihat Arsip</button>
+              <button type="button" className="btn-arsip px-5 pb-2 pt-2" style={{width: '100%'}}>Lihat Arsip</button>
             </div>
             <div className="mb-3 me-3 w-50">
-              <button type="button" className="btn btn-outline-primary px-5 radius-30" style={{width: '100%'}}>Download Arsip</button>
+              <button type="button" className="btn-arsip px-5 pb-2 pt-2" style={{width: '100%'}}>Download Arsip</button>
             </div>	
             <div className="mb-3 w-50">
-              <button type="button" className="btn btn-outline-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#kembaliFisik" style={{width: '100%'}}>Kembalikan Arsip</button>
+              <button type="button" className="btn-arsip px-5 pb-2 pt-2" data-bs-toggle="modal" data-bs-target="#kembaliFisik" style={{width: '100%'}}>Kembalikan Arsip</button>
             </div>
           </div>
         </div>
@@ -338,7 +338,7 @@ export default function LogPengajuanStaff () {
           </div>
           <div className="d-flex justify-content-center p-3 pb-0 pt-0">
             <div className="mb-3 w-100">
-              <button type="button" className="btn btn-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#kembaliFisik" style={{width: '100%'}}>Kembalikan Arsip</button>
+              <button type="button" className="btn-kembali px-5 pb-2 pt-2" data-bs-toggle="modal" data-bs-target="#kembaliFisik" style={{width: '100%'}}>Kembalikan Arsip</button>
             </div>
           </div>
         </div>
@@ -531,7 +531,7 @@ export default function LogPengajuanStaff () {
           <div className="top d-flex align-items-center justify-content-between p-3">
             <div className="kiri" style={{alignItems: 'center'}}>
               <div className="d-flex align-items-center">
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
                 <h6 className="ms-3 mb-0">PP Investasi</h6>
               </div>
             </div>
@@ -652,7 +652,7 @@ export default function LogPengajuanStaff () {
           {/* Modal Berhasil Kembali Fisik*/}
           <div className="col">
             <div className="modal fade" id="kembaliFisik" tabIndex={-1} aria-hidden="true">
-              <div className="modal-dialog modal-sm">
+              <div className="modal-dialog modal-sm-2">
                 <div className="modal-content">
                   <div className="modal-header" style={{borderBottom: 'none'}}>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
@@ -660,19 +660,40 @@ export default function LogPengajuanStaff () {
                   <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
                     <h5 className="modal-title" style={{marginBottom: 15}}>Pengembalian Arsip Fisik</h5>
                     <img src="assets/images/fileIcon.png" />
-                    <h6 className="modal-isi" style={{marginBottom: 0, marginTop: 15}}>Anda telah melebihi waktu peminjaman. Segera kembalikan arsip fisik yang anda pinjam pada petugas kami!</h6>
+                    <span className="modal-isi" style={{marginBottom: 0, marginTop: 15, textAlign: 'center'}}>Anda telah melebihi waktu peminjaman. Segera kembalikan arsip fisik yang anda pinjam pada petugas kami!</span>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 p-3">
                     <label className="form-label">Alasan Terlambat</label>
                     <input type className="form-control radius-30" placeholder="Tuliskan alasan terlambat melakukan pengembalian" />
                   </div>
                   <div className="modal-footer" style={{borderTop: 'none'}}>
-                    <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 50}}>Kembalikan Arsip</button>
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#berhasilKembaliFisik" style={{width: '100%', borderRadius: 50}}>Kembalikan Arsip</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+      {/* Modal Berhasil Kembali Fisik*/}
+      <div className="col">
+        <div className="modal fade" id="berhasilKembaliFisik" tabIndex={-1} aria-hidden="true">
+          <div className="modal-dialog modal-sm">
+            <div className="modal-content">
+              <div className="modal-header" style={{borderBottom: 'none'}}>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+              </div>
+              <div className="modal-body" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+                <h5 className="modal-title" style={{marginBottom: 15}}>Pengembalian Arsip Fisik</h5>
+                <img src="assets/images/checkmark.png" />
+                <span className="modal-isi" style={{marginBottom: 0, marginTop: 15, textAlign: 'center'}}>Pengembalian arsip fisik telah berhasil dan telah diterima oleh petugas kami.</span>
+              </div>
+              <div className="modal-footer" style={{borderTop: 'none'}}>
+                <button type="button" className="btn btn-primary" style={{width: '100%', borderRadius: 50}}>Oke</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
       </div></div></div>
 

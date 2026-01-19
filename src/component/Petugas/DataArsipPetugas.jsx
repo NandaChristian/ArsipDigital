@@ -28,14 +28,14 @@ export default function DataArsipPetugas() {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPetugas" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/house.png" alt="Dashboard" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/dataArsipPetugas" className="link">
               <div className="parent-icon">
@@ -334,9 +334,9 @@ export default function DataArsipPetugas() {
                     <label className="form-label">Nama Arsip</label>
                     <select className="form-select mb-3 radius-30" aria-label="Default select example">
                       <option selected>Pilih Arsip</option>
-                      <option value={1}>One</option>
-                      <option value={2}>Two</option>
-                      <option value={3}>Three</option>
+                      <option value={1}>PJOK</option>
+                      <option value={2}>SEOJK</option>
+                      <option value={3}>Ketentuan BPR</option>
                     </select>
                   </div>
                   <label className="form-label">Jenis Arsip</label>
@@ -359,27 +359,27 @@ export default function DataArsipPetugas() {
                       <label className="form-label">Lemari</label>
                       <select className="form-select mb-3 radius-30" aria-label="Default select example">
                         <option selected>Pilih Lemari</option>
-                        <option value={1}>One</option>
-                        <option value={2}>Two</option>
-                        <option value={3}>Three</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
                       </select>
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Rak</label>
                       <select className="form-select mb-3 radius-30" aria-label="Default select example">
                         <option selected>Pilih Rak</option>
-                        <option value={1}>One</option>
-                        <option value={2}>Two</option>
-                        <option value={3}>Three</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
                       </select>
                     </div>
                     <div className="mb-3">
                       <label className="form-label">Nomor</label>
                       <select className="form-select mb-3 radius-30" aria-label="Default select example">
                         <option selected>Pilih Nomor</option>
-                        <option value={1}>One</option>
-                        <option value={2}>Two</option>
-                        <option value={3}>Three</option>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
                       </select>
                     </div>
                   </div>
@@ -387,9 +387,9 @@ export default function DataArsipPetugas() {
                     <label className="form-label">Kategori</label>
                     <select className="form-select mb-3 radius-30" aria-label="Default select example">
                       <option selected>Pilih Kategori</option>
-                      <option value={1}>One</option>
-                      <option value={2}>Two</option>
-                      <option value={3}>Three</option>
+                      <option value={1}>OJK</option>
+                      <option value={2}>BPR</option>
+                      <option value={3}>Kemenkeu</option>
                     </select>
                   </div>
                   <div className="mb-3">

@@ -23,14 +23,14 @@ export default function MenuArsipPimpinan() {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Data User" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/menuArsipPimpinan" className="link">
               <div className="parent-icon">

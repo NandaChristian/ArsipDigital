@@ -21,14 +21,14 @@ export default function RiwayatUnduh () {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Data User" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/menuArsipPimpinan" className="link">
               <div className="parent-icon">
@@ -62,7 +62,7 @@ export default function RiwayatUnduh () {
           <ul className="navbar-nav align-items-center">
             <li className="nav-item dropdown dropdown-large">
               <a className="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
+                <img src="/assets/images/bell-dot.png" width="25px" height="25px" alt />
               </a>
             </li>
           </ul>
@@ -70,7 +70,7 @@ export default function RiwayatUnduh () {
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
             <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
-              <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
+              <img src="/assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Pimpinan
             </button>
           </div>
@@ -84,10 +84,10 @@ export default function RiwayatUnduh () {
     <div className="page-content">
       <div className="d-flex align-items-center">
         <div className="search-bar flex-grow-1">
-          <Link to="/menuArsipPimpinan">
+          <Link to="/menuArsipPimpinan" className="link">
           <div className="search-bar flex-grow-1 d-flex align-items-center mb-3">
-            <img src="assets/images/arrow-left.png" style={{width: 30, height: 30, marginRight: 10}} />
-            <h4 className="mb-0">Riwayat Unduhan</h4>
+            <img src="/assets/images/arrow-left.png" style={{width: 30, height: 30, marginRight: 10}} />
+            <h4 className="mb-0" style={{color: 'black'}}>Riwayat Unduhan</h4>
           </div>	
           </Link>
         </div>
@@ -97,7 +97,7 @@ export default function RiwayatUnduh () {
           <div className="kotak d-flex mb-4">
             <div className="d-flex border p-3 w-100">
               <div className>
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
               </div>
               <div className="flex-grow-1 ms-2  d-flex flex-column justify-content-center">
                 <div className="mb-1">
@@ -117,7 +117,7 @@ export default function RiwayatUnduh () {
           <div className="kotak d-flex mb-4">
             <div className="d-flex border p-3 w-100">
               <div className>
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
               </div>
               <div className="flex-grow-1 ms-2  d-flex flex-column justify-content-center">
                 <div className="mb-1">
@@ -137,7 +137,7 @@ export default function RiwayatUnduh () {
           <div className="kotak d-flex mb-4">
             <div className="d-flex border p-3 w-100">
               <div className>
-                <img src="assets/images/iconpdf.png" width={60} height={60} alt />
+                <img src="/assets/images/iconpdf.png" width={60} height={60} alt />
               </div>
               <div className="flex-grow-1 ms-2  d-flex flex-column justify-content-center">
                 <div className="mb-1">

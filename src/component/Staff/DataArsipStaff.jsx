@@ -75,7 +75,7 @@ export default function DataArsipStaff () {
         </div>
         <div className="user-box" style={{border: 'none'}}>
           <div className="col">
-            <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
+            <button type="button" className="btn-avatar p-3 pt-1 pb-1">
               <img src="assets/images/Avatar.png" alt style={{marginRight: 10}} />
               Pegawai
             </button>
@@ -96,17 +96,17 @@ export default function DataArsipStaff () {
       <div className="d-flex align-items-center">
         <div className="search-bar flex-grow-1">
           <ul className="nav nav-pills mb-3" role="tablist">
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+            <li onClick={() => navigate("/dataArsipStaff")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/dataArsipStaff")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
+                  <div className="tab-title">Arsip Fisik</div>
                 </div>
               </div>
             </li>
-            <li className="nav-item" role="presentation" style={{width: '50%', cursor: 'pointer'}}>
+            <li onClick={() => navigate("/dataArsipStaff/ArsipDigitalStaff")} className={`nav-item ${tab === "ArsipDigitalStaff" ? "active" : ""}`} role="presentation" style={{width: '50%', cursor: 'pointer'}}>
               <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/dataArsipStaff/ArsipDigitalStaff")} className={`tab-title ${tab === "ArsipDigitalStaff" ? "active" : ""}`}>Arsip Digital</div>
+                  <div className="tab-title">Arsip Digital</div>
                 </div>
               </div>
             </li>
@@ -114,7 +114,7 @@ export default function DataArsipStaff () {
         </div>
         <div className="user-box">
           <div className="col mb-3">
-            <button type="button" className="btn btn-primary px-5 radius-30" data-bs-toggle="modal" data-bs-target="#modalFisik">Pengajuan Peminjaman</button>
+            <button type="button" className="btn-pengajuan px-5 pb-2 pt-2" data-bs-toggle="modal" data-bs-target="#modalFisik">Pengajuan Peminjaman</button>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@ export default function DataArsipStaff () {
                 </div>
               </li>
               </Link>
-              <Link to="/dataArsipStaff/ruang" className="link">
+              <Link to="/dataArsipStaff/ruangStaff" className="link">
               <li className="list-group-item" style={{border: 'none'}}>
                 <div className="col">
                   <div className="card radius-10 shadow-none">
@@ -165,7 +165,7 @@ export default function DataArsipStaff () {
                 </div>
               </li>
               </Link>
-              <Link to="/dataArsipStaff/arsip" className="link">
+              <Link to="/dataArsipStaff/detailFisikStaff" className="link">
               <li className="list-group-item" style={{border: 'none'}}>
                 <div className="col">
                   <div className="card radius-10 shadow-none">

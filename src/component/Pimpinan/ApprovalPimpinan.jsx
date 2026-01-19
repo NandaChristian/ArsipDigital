@@ -28,14 +28,14 @@ export default function ApprovalPimpinan() {
               <div className="menu-title">Dashboard</div>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/dataUserPimpinan" className="link">
               <div className="parent-icon">
                 <img src="/assets/images/clipboard-list.png" alt="Data User" />
               </div>
               <div className="menu-title">Data User</div>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/menuArsipPimpinan" className="link">
               <div className="parent-icon">
@@ -94,17 +94,17 @@ export default function ApprovalPimpinan() {
       <div className="d-flex align-items-center mb-3">
         <div className="search-bar flex-grow-1">
           <ul className="nav nav-pills" role="tablist">
-            <li className="nav-item" role="presentation" style={{width: '50%'}}>
+            <li onClick={() => navigate("/approvalPimpinan")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{width: '50%'}}>
               <a className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div onClick={() => navigate("/approvalPimpinan")} className={`tab-title ${tab === "Arsip Fisik" ? "active" : ""}`}>Arsip Fisik</div>
+                  <div className="tab-title">Arsip Fisik</div>
                 </div>
               </a>
             </li>
-            <li className="nav-item" role="presentation" style={{width: '50%'}}>
+            <li onClick={() => navigate("/approvalDigitalPimpinan")} className={`nav-item ${tab === "Arsip Digital" ? "active" : ""}`} role="presentation" style={{width: '50%'}}>
               <a className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
                 <div className="d-flex align-items-center justify-content-center">
-                  <div  onClick={() => navigate("/approvalDigitalPimpinan")} className={`tab-title ${tab === "Arsip Digital" ? "active" : ""}`}>Arsip Digital</div>
+                  <div className="tab-title">Arsip Digital</div>
                 </div>
               </a>
             </li>
