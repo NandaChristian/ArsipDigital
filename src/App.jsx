@@ -54,6 +54,8 @@ import RakMaster from './component/Petugas/RakMaster.jsx';
 import FolderMaster from './component/Petugas/FolderMaster.jsx';
 import TujuanMaster from './component/Petugas/TujuanMaster.jsx';
 import KodeArsipMaster from './component/Petugas/KodeArsipMaster.jsx';
+import DataJenisArsip from './component/Petugas/DataJenisArsip.jsx';
+import NamaMaster from './component/Petugas/NamaMaster.jsx';
 
 
 
@@ -358,10 +360,18 @@ export default function App() {
         />
 
         <Route
-          path="/dataMaster"
+          path="/dataMaster/main"
           element={
             <ProtectedRoute>
               <DataMaster />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dataMaster/jenis"
+          element={
+            <ProtectedRoute>
+              <DataJenisArsip />
             </ProtectedRoute>
           }
         />
@@ -379,6 +389,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <SubKategoriMaster />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dataMaster/nama"
+          element={
+            <ProtectedRoute>
+              <NamaMaster />
             </ProtectedRoute>
           }
         />

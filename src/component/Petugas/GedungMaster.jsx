@@ -1,44 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { PengajuanContext } from "../../context/PengajuanContext";
+import Sidebar from "../Sidebar";
 export default function Gedung() {
   const [gedung, setGedung] = useState({
     name: "",
     code: ""
   })
-  const { token, gedungs, getGedung } = React.useContext(PengajuanContext)
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { token, gedungs, refreshData } = React.useContext(PengajuanContext)
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentUuid, setCurrentUuid] = useState(null);
 
-  let tab;
-  if (location.pathname.includes("KategoriMaster")) {
-    tab = "KategoriMaster";
-  } else if (location.pathname.includes("SubKategoriMaster")) {
-    tab = "SubKategoriMaster";
-  } else if (location.pathname.includes("GedungMaster")) {
-    tab = "GedungMaster";
-  } else if (location.pathname.includes("LantaiMaster")) {
-    tab = "LantaiMaster";
-  } else if (location.pathname.includes("RuangMaster")) {
-    tab = "RuangMaster";
-  } else if (location.pathname.includes("LemariMaster")) {
-    tab = "LemariMaster";
-  } else if (location.pathname.includes("RakMaster")) {
-    tab = "RakMaster";
-  } else if (location.pathname.includes("FolderMaster")) {
-    tab = "FolderMaster";
-  } else if (location.pathname.includes("TujuanMaster")) {
-    tab = "TujuanMaster";
-  } else if (location.pathname.includes("KodeArsipMaster")) {
-    tab = "KodeArsipMaster";
-  } else {
-    tab = "JenisArsipMaster";
-  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/buildings', {
-        method: 'POST',
+      const url = isEdit
+        ? `${import.meta.env.VITE_API_URL}/api/buildings/${currentUuid}`
+        : `${import.meta.env.VITE_API_URL}/api/buildings`;
+
+      const method = isEdit ? 'PUT' : 'POST';
+      const response = await fetch(url, {
+        method: method,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -52,13 +34,50 @@ export default function Gedung() {
       if (!response.ok) {
         throw new Error(result.message || 'Login Gagal');
       }
-      getGedung(token)
+      setGedung({ building_uuid: "", name: "" });
+      setIsEdit(false);
+      setCurrentUuid(null);
+      refreshData();
+      const modalElement = document.getElementById('tambahGedungMaster');
+      const modal = window.bootstrap.Modal.getInstance(modalElement);
+      modal.hide()
     } catch (error) {
-      // 'error.message' akan berisi pesan dari 'throw new Error' di atas
       console.error('Login Gagal:', error.message);
     }
   };
-  console.log("gedungs", gedungs)
+  const handleEdit = (gedungItem) => {
+    setIsEdit(true);
+    setCurrentUuid(gedungItem.uuid);
+    setGedung({
+      name: gedungItem.name
+    });
+  };
+  const handleDelete = async (currentBuild) => {
+    if (window.confirm("Peringatan: Menghapus item ini akan menghapus semua sub-item di dalamnya!")) {
+      try {
+        const response = await fetch(import.meta.env.VITE_API_URL + '/api/buildings/' + currentBuild.uuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || 'Login Gagal');
+        }
+        getGedung(token)
+      } catch (error) {
+        // 'error.message' akan berisi pesan dari 'throw new Error' di atas
+        console.error('Login Gagal:', error.message);
+      }
+    }
+  };
+
+
   return (
     <div className="wrapper">
       {/*sidebar wrapper */}
@@ -160,26 +179,23 @@ export default function Gedung() {
               <div className="card">
                 <div className="card-body-master">
                   <div className="col d-flex justify-content-center">
-                    <button type="button" className="btn-tambah px-5 mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#tambahGedungMaster">Tambah <img src="/assets/images/plus.png" width={20} height={20} /></button>
+                    <button
+                      onClick={() => {
+                        setIsEdit(false);
+                        setGedung({ name: "" });
+                      }}
+                      type="button"
+                      className="btn-tambah px-5 mt-2 mb-3"
+                      data-bs-toggle="modal"
+                      data-bs-target="#tambahGedungMaster"
+                    >
+                      Tambah +
+                    </button>
                   </div>
                   <div>
                     <h6 className="my-2" style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>Kategori Data Master</h6>
                   </div>
-                  <div className="fm-menu mt-3">
-                    <div className="list-group list-group-flush">
-                      <div onClick={() => navigate("/dataMaster")} className={`list-group-item py-2 ${tab === "JenisArsipMaster" ? "" : ""}`} role="presentation"><span>Jenis Arsip</span></div>
-                      <div onClick={() => navigate("/dataMaster/KategoriMaster")} className={`list-group-item py-2 ${tab === "KategoriMaster" ? "" : ""}`}><span>Kategori</span></div>
-                      <div onClick={() => navigate("/dataMaster/SubKategoriMaster")} className={`list-group-item py-2 ${tab === "SubKategoriMaster" ? "" : ""}`}><span>Sub Kategori</span></div>
-                      <div onClick={() => navigate("/dataMaster/GedungMaster")} className={`list-group-item active py-2 ${tab === "GedungMaster" ? "" : ""}`}><span>Gedung</span></div>
-                      <div onClick={() => navigate("/dataMaster/LantaiMaster")} className={`list-group-item py-2 ${tab === "LantaiMaster" ? "" : ""}`}><span>Lantai</span></div>
-                      <div onClick={() => navigate("/dataMaster/RuangMaster")} className={`list-group-item py-2 ${tab === "RuangMaster" ? "" : ""}`}><span>Ruang</span></div>
-                      <div onClick={() => navigate("/dataMaster/LemariMaster")} className={`list-group-item py-2 ${tab === "LemariMaster" ? "" : ""}`}><span>Lemari</span></div>
-                      <div onClick={() => navigate("/dataMaster/RakMaster")} className={`list-group-item py-2 ${tab === "RakMaster" ? "" : ""}`}><span>Rak</span></div>
-                      <div onClick={() => navigate("/dataMaster/FolderMaster")} className={`list-group-item py-2 ${tab === "FolderMaster" ? "" : ""}`}><span>Folder</span></div>
-                      <div onClick={() => navigate("/dataMaster/TujuanMaster")} className={`list-group-item py-2 ${tab === "TujuanMaster" ? "" : ""}`}><span>Tujuan</span></div>
-                      <div onClick={() => navigate("/dataMaster/KodeArsipMaster")} className={`list-group-item py-2 ${tab === "KodeArsipMaster" ? "" : ""}`}><span>Kode Arsip</span></div>
-                    </div>
-                  </div>
+                  <Sidebar />
                 </div>
               </div>
             </div>
@@ -200,10 +216,20 @@ export default function Gedung() {
                         <h7 className="mb-1">Aksi:</h7>
                       </div>
                       <div className="w-45">
-                        <button type="button" className="btn-edit pt-1 pb-1" style={{ width: '100%' }}><img src="/assets/images/edit.png" alt width="15px" height="15px" style={{ marginRight: 8 }} />Edit</button>
+                        <button
+                          onClick={() => handleEdit(gedung)}
+                          type="button"
+                          className="btn-edit pt-1 pb-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#tambahGedungMaster"
+                          style={{ width: '100%' }}
+                        >
+                          <img src="/assets/images/edit.png" alt="" width="15px" height="15px" style={{ marginRight: 8 }} />
+                          Edit
+                        </button>
                       </div>
                       <div className="w-45">
-                        <button type="button" className="btn-hapus pt-1 pb-1" style={{ width: '100%' }}><img src="/assets/images/hapus.png" width="15px" height="15px" style={{ marginRight: 8 }} alt />Hapus</button>
+                        <button onClick={() => handleDelete(gedung)} type="submit" className="btn-hapus pt-1 pb-1" style={{ width: '100%' }}><img src="/assets/images/hapus.png" width="15px" height="15px" style={{ marginRight: 8 }} alt />Hapus</button>
                       </div>
                     </div>
                   </div>

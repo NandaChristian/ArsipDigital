@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 export const PengajuanContext = createContext();
 
@@ -12,7 +12,6 @@ export const usePengajuan = () => {
 
 export const PengajuanProvider = ({ children }) => {
   const [pengajuanList, setPengajuanList] = useState([
-    // Data dummy untuk demo
     {
       id: 1,
       namaArsip: "PP Investasi",
@@ -83,77 +82,49 @@ export const PengajuanProvider = ({ children }) => {
       alasan: null
     }
   ]);
+  const [token, setToken] = useState(localStorage.getItem("token") || '');
 
   const [gedungs, setGedungs] = useState([]);
   const [floors, setFloors] = useState([]);
   const [rooms, setRooms] = useState([]);
-  const [token, setToken] = useState('')
-  async function getGedung(token) {
+  const [cabinets, setCabinets] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [semuaJenis, setSemuaJenis] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [names, setNames] = useState([]);
+  const [shelves, setShelves] = useState([]);
+  const [folders, setFolders] = useState([]);
+  const fetchData = useCallback(async (endpoint, setter, authToken) => {
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/buildings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/${endpoint}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${authToken}`
         },
       });
 
       const result = await response.json();
-      console.log("result", result)
-      if (!response.ok) {
-        throw new Error(result.message || 'Login Gagal');
-      }
-      setGedungs(result);
+      if (!response.ok) throw new Error(result.message || 'Fetch Gagal');
+      setter(result);
     } catch (error) {
-      // 'error.message' akan berisi pesan dari 'throw new Error' di atas
-      console.error('Login Gagal:', error.message);
+      console.error(`Error fetching ${endpoint}:`, error.message);
     }
-  }
-  async function getFloors(token) {
-    try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/floors', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      });
-
-      const result = await response.json();
-      console.log("result", result)
-      if (!response.ok) {
-        throw new Error(result.message || 'Login Gagal');
-      }
-      setFloors(result);
-    } catch (error) {
-      // 'error.message' akan berisi pesan dari 'throw new Error' di atas
-      console.error('Login Gagal:', error.message);
-    }
-  }
-  async function getRooms(token) {
-    try {
-      const response = await fetch(import.meta.env.VITE_API_URL + '/api/rooms', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      });
-
-      const result = await response.json();
-      console.log("result", result)
-      if (!response.ok) {
-        throw new Error(result.message || 'Login Gagal');
-      }
-      setRooms(result);
-    } catch (error) {
-      // 'error.message' akan berisi pesan dari 'throw new Error' di atas
-      console.error('Login Gagal:', error.message);
-    }
-  }
+  }, []);
+  const getAllMasterData = useCallback((authToken) => {
+    if (!authToken) return;
+    fetchData('buildings', setGedungs, authToken);
+    fetchData('floors', setFloors, authToken);
+    fetchData('rooms', setRooms, authToken);
+    fetchData('cabinets', setCabinets, authToken);
+    fetchData('shelves', setShelves, authToken);
+    fetchData('folders', setFolders, authToken);
+    fetchData('tipe', setTypes, authToken);
+    fetchData('jenis', setSemuaJenis, authToken);
+    fetchData('kategori', setCategories, authToken);
+    fetchData('names', setNames, authToken);
+  }, [fetchData]);
   const addPengajuan = (data) => {
     const newPengajuan = {
       id: Date.now(),
@@ -190,25 +161,30 @@ export const PengajuanProvider = ({ children }) => {
   useEffect(() => {
     const auth = localStorage.getItem("token");
     if (auth) {
-      setToken(auth)
-      getGedung(auth)
-      getFloors(auth)
-      getRooms(auth)
+      setToken(auth);
+      getAllMasterData(auth);
     }
-  }, [])
+  }, [getAllMasterData]);
+  const contextValue = useMemo(() => ({
+    pengajuanList,
+    types,
+    gedungs,
+    floors,
+    rooms,
+    cabinets,
+    semuaJenis,
+    shelves,
+    folders,
+    categories,
+    names,
+    token,
+    addPengajuan: (data) => { /* logika add */ },
+    updatePengajuan: (id, updates) => { /* logika update */ },
+    deletePengajuan: (id) => { /* logika delete */ },
+    refreshData: () => getAllMasterData(token)
+  }), [pengajuanList, types, gedungs, floors, semuaJenis, rooms, names, cabinets, shelves, folders, token, getAllMasterData]);
   return (
-    <PengajuanContext.Provider value={{
-      pengajuanList,
-      addPengajuan,
-      updatePengajuan,
-      deletePengajuan,
-      gedungs,
-      token,
-      getGedung,
-      floors,
-      getFloors,
-      rooms, getRooms
-    }}>
+    <PengajuanContext.Provider value={contextValue}>
       {children}
     </PengajuanContext.Provider>
   );

@@ -1,296 +1,228 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import Sidebar from "../Sidebar";
+import { PengajuanContext } from "../../context/PengajuanContext";
+import Navigation from "../Navigation";
+import React from "react";
 
-export default function KategoriMaster () {
-  const navigate = useNavigate();
-  const location = useLocation();
+export default function KategoriMaster() {
+  const { categories, refreshData, token } = React.useContext(PengajuanContext)
+  const [isEdit, setIsEdit] = React.useState(false);
+  const [currentUuid, setCurrentUuid] = React.useState(null);
+  const [category, setCategory] = React.useState({
+    name: "",
+  })
+  console.log("categories", categories)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = isEdit
+        ? `${import.meta.env.VITE_API_URL}/api/kategori/${currentUuid}`
+        : `${import.meta.env.VITE_API_URL}/api/kategori`;
 
-  let tab;
-    if (location.pathname.includes("KategoriMaster")) {
-      tab = "KategoriMaster";
-    } else if (location.pathname.includes("SubKategoriMaster")) {
-      tab = "SubKategoriMaster";
-    } else if (location.pathname.includes("GedungMaster")) {
-      tab = "GedungMaster";
-    } else if (location.pathname.includes("LantaiMaster")) {
-      tab = "LantaiMaster";
-    } else if (location.pathname.includes("RuangMaster")) {
-      tab = "RuangMaster";
-    } else if (location.pathname.includes("LemariMaster")) {
-      tab = "LemariMaster";
-    } else if (location.pathname.includes("RakMaster")) {
-      tab = "RakMaster";
-    } else if (location.pathname.includes("FolderMaster")) {
-      tab = "FolderMaster";
-    } else if (location.pathname.includes("TujuanMaster")) {
-      tab = "TujuanMaster";
-    } else if (location.pathname.includes("KodeArsipMaster")) {
-      tab = "KodeArsipMaster";
-    } else {
-      tab = "JenisArsipMaster";
-  }
+      const method = isEdit ? 'PUT' : 'POST';
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(category),
+      });
 
-	return (
-<div className="wrapper">
-  {/*sidebar wrapper */}
-  <div className="sidebar-wrapper" data-simplebar="true">
-    <div className="sidebar-header" style={{border: 'none', justifyContent: 'center'}}>
-      <div className>
-        <h4 className="logo-text" style={{fontWeight: 600, fontSize: 20, marginLeft: 0}}>Arsip Digital Bank</h4>
-      </div>
-    </div>
-    {/*navigation*/}
-   <ul className="metismenu p-3" id="menu">
-      <h6 className="ms-3 mb-3">MAIN MENU</h6>
-          <li>
-            <Link to="/dashboardPetugas" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/house.png" alt="Dashboard" />
-              </div>
-              <div className="menu-title">Dashboard</div>
-            </Link>
-          </li>
-          {/* <li>
-            <Link to="/dataUserPetugas" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/house.png" alt="Dashboard" />
-              </div>
-              <div className="menu-title">Data User</div>
-            </Link>
-          </li> */}
-          <li>
-            <Link to="/dataArsipPetugas" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/clipboard-list.png" alt="Data Arsip" />
-              </div>
-              <div className="menu-title">Data Arsip</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/dataMaster" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/clipboard-list.png" alt="Log Pengajuan" />
-              </div>
-              <div className="menu-title">Data Master</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/approvalPetugas" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/history.png" alt="Log History" />
-              </div>
-              <div className="menu-title">Approval</div>
-          </Link>
-          </li>
-    </ul>
-    {/*end navigation*/}
-  </div>
-  {/*end sidebar wrapper */}
-  {/*start header */}
-  <header>
-    <div className="topbar d-flex align-items-center">
-      <nav className="navbar navbar-expand">
-        <div className="mobile-toggle-menu"><i className="bx bx-menu" />
-        </div>
-        <div className="search-bar flex-grow-1">
-          <h4 className="mb-0">Selamat Datang</h4>
-        </div>
-        <div className="top-menu ms-auto">
-          <ul className="navbar-nav align-items-center">
-            <li className="nav-item dropdown dropdown-large">
-              <a className="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/assets/images/bell-dot.png" width="25px" height="25px" alt />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="user-box" style={{border: 'none'}}>
-          <div className="col">
-            <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
-              <img src="/assets/images/Avatar.png" alt style={{marginRight: 10}} />
-              Petugas
-            </button>
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Login Gagal');
+      }
+      setJenis({ name: "" });
+      setIsEdit(false);
+      setCurrentUuid(null);
+      refreshData();
+      const modalElement = document.getElementById('tambahKategoriMaster');
+      const modal = window.bootstrap.Modal.getInstance(modalElement);
+      modal.hide()
+    } catch (error) {
+      console.error('Login Gagal:', error.message);
+    }
+  };
+  const handleEdit = (kategoriItem) => {
+    setIsEdit(true);
+    setCurrentUuid(kategoriItem.uuid);
+    setCategory({
+      name: kategoriItem.name
+    });
+  };
+  const handleDelete = async (kategoriItem) => {
+    if (window.confirm("Peringatan: Menghapus item ini akan menghapus semua sub-item di dalamnya!")) {
+      try {
+        const response = await fetch(import.meta.env.VITE_API_URL + '/api/kategori/' + kategoriItem.uuid, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.message || 'Login Gagal');
+        }
+        refreshData()
+      } catch (error) {
+        // 'error.message' akan berisi pesan dari 'throw new Error' di atas
+        console.error('Login Gagal:', error.message);
+      }
+    }
+  };
+  return (
+    <div className="wrapper">
+      {/*sidebar wrapper */}
+      <div className="sidebar-wrapper" data-simplebar="true">
+        <div className="sidebar-header" style={{ border: 'none', justifyContent: 'center' }}>
+          <div className>
+            <h4 className="logo-text" style={{ fontWeight: 600, fontSize: 20, marginLeft: 0 }}>Arsip Digital Bank</h4>
           </div>
         </div>
-      </nav>
-    </div>
-  </header>
-  {/*end header */}
-  {/*start page wrapper */}
-  <div className="page-wrapper">
-    <div className="page-content">
-      <div className="d-flex align-items-center">
-        <div className="d-flex align-items-center">
-          <div className="search-bar flex-grow-1 d-flex align-items-center" style={{marginBottom: 10}}>
-            <h4 style={{marginBottom: 0}}>Data Master</h4>
-          </div>
-        </div>
+        {/*navigation*/}
+        <Navigation />
+        {/*end navigation*/}
       </div>
-      <div className="row-cols-xl-2 d-flex flex-nowrap">
-        <div className="col-12 col-lg-2" style={{width: '22%', marginRight: '15px'}}>
-          <div className="card">
-            <div className="card-body-master">
-              <div className="col d-flex justify-content-center">
-                <button type="button" className="btn-tambah px-5 mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#tambahKategoriMaster">Tambah <img src="/assets/images/plus.png" width={20} height={20} /></button>
+      {/*end sidebar wrapper */}
+      {/*start header */}
+      <header>
+        <div className="topbar d-flex align-items-center">
+          <nav className="navbar navbar-expand">
+            <div className="mobile-toggle-menu"><i className="bx bx-menu" />
+            </div>
+            <div className="search-bar flex-grow-1">
+              <h4 className="mb-0">Selamat Datang</h4>
+            </div>
+            <div className="top-menu ms-auto">
+              <ul className="navbar-nav align-items-center">
+                <li className="nav-item dropdown dropdown-large">
+                  <div className="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="user-box" style={{ border: 'none' }}>
+              <div className="col">
+                <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
+                  <img src="assets/images/Avatar.png" alt style={{ marginRight: 10 }} />
+                  Petugas
+                </button>
               </div>
-              <div>
-                <h6 className="my-2" style={{textAlign: 'center', whiteSpace: 'nowrap'}}>Kategori Data Master</h6>
-              </div>
-              <div className="fm-menu mt-3">
-                <div className="list-group list-group-flush"> 
-                  <div onClick={() => navigate("/dataMaster")} className={`list-group-item py-2 ${tab === "JenisArsipMaster" ? "" : ""}`} role="presentation"><span>Jenis Arsip</span></div>
-                  <div onClick={() => navigate("/dataMaster/KategoriMaster")} className={`list-group-item active py-2 ${tab === "KategoriMaster" ? "" : ""}`}><span>Kategori</span></div>
-                  <div onClick={() => navigate("/dataMaster/SubKategoriMaster")} className={`list-group-item py-2 ${tab === "SubKategoriMaster" ? "" : ""}`}><span>Sub Kategori</span></div>
-                  <div onClick={() => navigate("/dataMaster/GedungMaster")} className={`list-group-item py-2 ${tab === "GedungMaster" ? "" : ""}`}><span>Gedung</span></div>
-                  <div onClick={() => navigate("/dataMaster/LantaiMaster")} className={`list-group-item py-2 ${tab === "LantaiMaster" ? "" : ""}`}><span>Lantai</span></div>
-                  <div onClick={() => navigate("/dataMaster/RuangMaster")} className={`list-group-item py-2 ${tab === "RuangMaster" ? "" : ""}`}><span>Ruang</span></div>
-                  <div onClick={() => navigate("/dataMaster/LemariMaster")} className={`list-group-item py-2 ${tab === "LemariMaster" ? "" : ""}`}><span>Lemari</span></div>
-                  <div onClick={() => navigate("/dataMaster/RakMaster")} className={`list-group-item py-2 ${tab === "RakMaster" ? "" : ""}`}><span>Rak</span></div>
-                  <div onClick={() => navigate("/dataMaster/FolderMaster")} className={`list-group-item py-2 ${tab === "FolderMaster" ? "" : ""}`}><span>Folder</span></div>
-                  <div onClick={() => navigate("/dataMaster/TujuanMaster")} className={`list-group-item py-2 ${tab === "TujuanMaster" ? "" : ""}`}><span>Tujuan</span></div>
-                  <div onClick={() => navigate("/dataMaster/KodeArsipMaster")} className={`list-group-item py-2 ${tab === "KodeArsipMaster" ? "" : ""}`}><span>Kode Arsip</span></div>
-                </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      {/*end header */}
+      {/*start page wrapper */}
+      <div className="page-wrapper">
+        <div className="page-content">
+          <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center">
+              <div className="search-bar flex-grow-1 d-flex align-items-center" style={{ marginBottom: 10 }}>
+                <h4 style={{ marginBottom: 0 }}>Data Master</h4>
               </div>
             </div>
           </div>
-        </div>
-        <div className="customers-list mb-3" style={{width: '78%'}}>
-          <div className="customers-list-item d-flex align-items-center justify-content-between p-3 cursor-pointer bg-white radius-10" style={{marginBottom: 15}}>
-            <div className="kiri" style={{display: 'flex', alignItems: 'center'}}>
-              <div className>
-                <img src="/assets/images/iconpdf.png" width={50} height={50} alt />
-              </div>
-              <div className="ms-3">
-                <h6 className="mb-1 font-14">OJK</h6>
+          <div className="row-cols-xl-2 d-flex flex-nowrap">
+            <div className="col-12 col-lg-2" style={{ width: '22%', marginRight: '15px' }}>
+              <div className="card">
+                <div className="card-body-master">
+                  <div className="col d-flex justify-content-center">
+                    <button
+                      onClick={() => {
+                        setIsEdit(false);
+                        setCategory({ name: "" });
+                      }}
+                      type="button"
+                      className="btn-tambah px-5 mt-2 mb-3"
+                      data-bs-toggle="modal"
+                      data-bs-target="#tambahKategoriMaster"
+                    >
+                      Tambah +
+                    </button>
+                  </div>
+                  <div>
+                    <h6 className="my-2" style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>Kategori Data Master</h6>
+                  </div>
+                  <Sidebar />
+                </div>
               </div>
             </div>
-            <div className="kanan" style={{display: 'flex'}}>
-              <div className="d-flex align-items-center pb-0 pt-0 gap-3">
-                <div className>
-                  <h7 className="mb-1">Aksi:</h7> 
-                </div>
-                <div className="w-45">
-                  <button type="button" className="btn-edit pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/edit.png" alt width="15px" height="15px" style={{marginRight: 8}} />Edit</button>
-                </div>	
-                <div className="w-45">
-                  <button type="button" className="btn-hapus pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/hapus.png" width="15px" height="15px" style={{marginRight: 8}} alt />Hapus</button>
-                </div>
-              </div>			
-            </div>
-          </div>		
-          <div className="customers-list-item d-flex align-items-center justify-content-between p-3 cursor-pointer bg-white radius-10" style={{marginBottom: 15}}>
-            <div className="kiri" style={{display: 'flex', alignItems: 'center'}}>
-              <div className>
-                <img src="/assets/images/iconpdf.png" width={50} height={50} alt />
-              </div>
-              <div className="ms-3">
-                <h6 className="mb-1 font-14">BPR</h6>
-              </div>
-            </div>
-            <div className="kanan" style={{display: 'flex'}}>
-              <div className="d-flex align-items-center pb-0 pt-0 gap-3">
-                <div className>
-                  <h7 className="mb-1">Aksi:</h7> 
-                </div>
-                <div className="w-45">
-                  <button type="button" className="btn-edit pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/edit.png" alt width="15px" height="15px" style={{marginRight: 8}} />Edit</button>
-                </div>	
-                <div className="w-45">
-                  <button type="button" className="btn-hapus pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/hapus.png" width="15px" height="15px" style={{marginRight: 8}} alt />Hapus</button>
-                </div>
-              </div>			
-            </div>
-          </div>		
-          <div className="customers-list-item d-flex align-items-center justify-content-between p-3 cursor-pointer bg-white radius-10" style={{marginBottom: 15}}>
-            <div className="kiri" style={{display: 'flex', alignItems: 'center'}}>
-              <div className>
-                <img src="/assets/images/iconpdf.png" width={50} height={50} alt />
-              </div>
-              <div className="ms-3">
-                <h6 className="mb-1 font-14">Bank Indonesia</h6>
-              </div>
-            </div>
-            <div className="kanan" style={{display: 'flex'}}>
-              <div className="d-flex align-items-center pb-0 pt-0 gap-3">
-                <div className>
-                  <h7 className="mb-1">Aksi:</h7> 
-                </div>
-                <div className="w-45">
-                  <button type="button" className="btn-edit pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/edit.png" alt width="15px" height="15px" style={{marginRight: 8}} />Edit</button>
-                </div>	
-                <div className="w-45">
-                  <button type="button" className="btn-hapus pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/hapus.png" width="15px" height="15px" style={{marginRight: 8}} alt />Hapus</button>
-                </div>
-              </div>			
-            </div>
-          </div>		
-          <div className="customers-list-item d-flex align-items-center justify-content-between p-3 cursor-pointer bg-white radius-10" style={{marginBottom: 15}}>
-            <div className="kiri" style={{display: 'flex', alignItems: 'center'}}>
-              <div className>
-                <img src="/assets/images/iconpdf.png" width={50} height={50} alt />
-              </div>
-              <div className="ms-3">
-                <h6 className="mb-1 font-14">Kemenkeu</h6>
-              </div>
-            </div>
-            <div className="kanan" style={{display: 'flex'}}>
-              <div className="d-flex align-items-center pb-0 pt-0 gap-3">
-                <div className>
-                  <h7 className="mb-1">Aksi:</h7> 
-                </div>
-                <div className="w-45">
-                  <button type="button" className="btn-edit pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/edit.png" alt width="15px" height="15px" style={{marginRight: 8}} />Edit</button>
-                </div>	
-                <div className="w-45">
-                  <button type="button" className="btn-hapus pt-1 pb-1" style={{width: '100%'}}><img src="/assets/images/hapus.png" width="15px" height="15px" style={{marginRight: 8}} alt />Hapus</button>
-                </div>
-              </div>			
-            </div>
-          </div>		
-        </div>
-      </div>
-      {/* Modal Tambah User */}
-      <div className="modal fade" id="tambahKategoriMaster" tabIndex={-1} aria-hidden="true">
-        <div className="modal-dialog modal-dialog-scrollable">
-          <div className="modal-content">
-            <div className="modal-header" style={{border: 'none'}}>
-              <div className style={{margin: 'auto'}}>
-                <h5 className="modal-title align-items-center">Penambahan Kategori</h5>
-              </div>
-              <div>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-              </div>
-            </div>
-            <div className="modal-body">
-              <img src="/assets/images/documents.png" alt width="90px" height="90px" style={{display: 'block', margin: '0 auto', marginBottom: 20}} />
-              <form>
-                <div className="mb-3">
-                  <label className="form-label">Nama Kategori</label>
-                  <input type="text" className="form-control radius-30" placeholder="Masukkan Nama Kategori" />
-                </div>
-                <label className="form-label">Jenis Arsip</label>
-                  <div className="line-check" style={{display: 'flex'}}>
-                    <div className="form-check" style={{marginRight: 10}}>
-                      <input className="form-check-input" type="checkbox" defaultValue id="flexCheckDefault" />
-                      <label className="form-check-label" htmlFor="flexCheckDefault">Surat</label>
+            <div className="customers-list mb-3" style={{ width: '78%' }}>
+              {categories?.map((item) => (
+                <div key={item.uuid} className="customers-list-item d-flex align-items-center justify-content-between p-3 cursor-pointer bg-white radius-10" style={{ marginBottom: 15 }}>
+                  <div className="kiri" style={{ display: 'flex', alignItems: 'center' }}>
+                    <div className>
+                      <img src="assets/images/stackfiles.png" width={60} height={50} alt />
                     </div>
-                    <div className="form-check" style={{marginRight: 10}}>
-                      <input className="form-check-input" type="checkbox" defaultValue id="flexCheckDefault" />
-                      <label className="form-check-label" htmlFor="flexCheckDefault">Laporan</label>
-                    </div>
-                    <div className="form-check" style={{marginRight: 10}}>
-                      <input className="form-check-input" type="checkbox" defaultValue id="flexCheckDefault" />
-                      <label className="form-check-label" htmlFor="flexCheckDefault">File</label>
+                    <div className="ms-3">
+                      <h6 className="mb-1 font-14">{item.name}</h6>
                     </div>
                   </div>
-              </form>
+                  <div className="kanan" style={{ display: 'flex' }}>
+                    <div className="d-flex align-items-center pb-0 pt-0 gap-3">
+                      <div className>
+                        <h7 className="mb-1">Aksi:</h7>
+                      </div>
+                      <div className="w-45">
+                        <button
+                          onClick={() => handleEdit(item)}
+                          type="button"
+                          className="btn-edit pt-1 pb-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#tambahKategoriMaster"
+                          style={{ width: '100%' }}
+                        >
+                          <img src="/assets/images/edit.png" alt="" width="15px" height="15px" style={{ marginRight: 8 }} />
+                          Edit
+                        </button>
+                      </div>
+                      <div className="w-45">
+                        <button onClick={() => handleDelete(item)} type="submit" className="btn-hapus pt-1 pb-1" style={{ width: '100%' }}><img src="/assets/images/hapus.png" width="15px" height="15px" style={{ marginRight: 8 }} alt />Hapus</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="p-3 pt-0">
-              <div className="d-flex align-items-center pb-0 pt-0 gap-3">
-                <div className="w-50">
-                  <button type="button" className="btn-batal" style={{width: '100%'}}>Batal</button>
-                </div>	
-                <div className="w-50">
-                  <button type="button" className="btn-tambah" style={{width: '100%'}}>Tambah</button>
+          </div>
+
+
+          {/* Modal Tambah User */}
+          <div className="modal fade" id="tambahKategoriMaster" tabIndex={-1} aria-hidden="true">
+            <div className="modal-dialog modal-dialog-scrollable">
+              <div className="modal-content">
+                <div className="modal-header" style={{ border: 'none' }}>
+                  <div className style={{ margin: 'auto' }}>
+                    <h5 className="modal-title align-items-center">Penambahan Ketegori Arsip</h5>
+                  </div>
+                  <div>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                  </div>
+                </div>
+                <div className="modal-body">
+                  <img src="assets/images/documents.png" alt width="90px" height="90px" style={{ display: 'block', margin: '0 auto', marginBottom: 20 }} />
+                  <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                      <label className="form-label">Jenis Arsip</label>
+                      <input type="text" value={category.name} onChange={(e) => setCategory({ name: e.target.value })} name="name" className="form-control radius-30" placeholder="Masukkan Kategori Arsip" />
+                    </div>
+                    <div className="d-flex align-items-center pb-0 pt-0 gap-3">
+                      <div className="w-50">
+                        <button type="button" className="btn-batal" style={{ width: '100%' }}>Batal</button>
+                      </div>
+                      <div className="w-50">
+                        <button type="submit" className="btn-tambah" style={{ width: '100%' }}>Simpan</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -298,7 +230,6 @@ export default function KategoriMaster () {
         </div>
       </div>
     </div>
-  </div>
-</div>
-	)
+
+  );
 }
