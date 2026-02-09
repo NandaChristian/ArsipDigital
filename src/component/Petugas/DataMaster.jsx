@@ -39,6 +39,7 @@ export default function DataMaster() {
       refreshData();
       const modalElement = document.getElementById('tambahTipeMaster');
       const modal = window.bootstrap.Modal.getInstance(modalElement);
+
       modal.hide()
     } catch (error) {
       console.error('Login Gagal:', error.message);
@@ -142,7 +143,7 @@ export default function DataMaster() {
                       type="button"
                       className="btn-tambah px-5 mt-2 mb-3"
                       data-bs-toggle="modal"
-                      data-bs-target="#tambahTipeArsip"
+                      data-bs-target="#tambahTipeMaster"
                     >
                       Tambah +
                     </button>
@@ -176,7 +177,7 @@ export default function DataMaster() {
                           type="button"
                           className="btn-edit pt-1 pb-1"
                           data-bs-toggle="modal"
-                          data-bs-target="#tambahTipeArsip"
+                          data-bs-target="#tambahTipeMaster"
                           style={{ width: '100%' }}
                         >
                           <img src="/assets/images/edit.png" alt="" width="15px" height="15px" style={{ marginRight: 8 }} />
@@ -195,7 +196,7 @@ export default function DataMaster() {
 
 
           {/* Modal Tambah User */}
-          <div className="modal fade" id="tambahTipeArsip" tabIndex={-1} aria-hidden="true">
+          <div className="modal fade" id="tambahTipeMaster" tabIndex={-1} aria-hidden="true">
             <div className="modal-dialog modal-dialog-scrollable">
               <div className="modal-content">
                 <div className="modal-header" style={{ border: 'none' }}>

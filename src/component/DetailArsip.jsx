@@ -1,13 +1,18 @@
 import { Link, useParams } from "react-router-dom";
-import { PengajuanContext } from "../../context/PengajuanContext";
 import React from "react";
-import DataArsip from "../Petugas/DataArsip";
+import AdminLayout from "./layouts/AdminLayout";
+import { PengajuanContext } from "../context/PengajuanContext";
+import DataArsip from "./Petugas/DataArsip";
 
-export default function DetailArsipFisik() {
-  const { uuid, role } = useParams();
-  const { arsips, folders, handleDelete } = React.useContext(PengajuanContext);
-  const filterArsip = arsips?.filter((arsip) => arsip.folder_uuid == uuid);
-  const filterFolder = folders?.filter((folder) => folder.uuid == uuid);
+export default function DetailArsip() {
+  // const { uuid } = useParams();
+  const { arsips, handleEdit, handleDelete, role } =
+    React.useContext(PengajuanContext);
+  const [param, setParam] = React.useState("fisik");
+  const arsipFisik = arsips?.filter((arsip) => arsip.file == null);
+  const arsipDigital = arsips?.filter((arsip) => arsip.file != null);
+  const filterArsip = param == "fisik" ? arsipFisik : arsipDigital;
+
   return (
     <DataArsip>
       <div className="dropdown">
@@ -24,17 +29,17 @@ export default function DetailArsipFisik() {
         <div className="customers-list mb-3">
           {filterArsip?.map((arsip) => (
             <div
-              className="customers-list-item cursor-pointer bg-white"
+              className="customers-list-item shadow cursor-pointer bg-white"
               style={{ marginBottom: 15 }}
             >
-              {/* Bagian Atas: Icon & Tombol Aksi */}
+              {/* Header: Icon & Badges */}
               <div className="top d-flex align-items-center justify-content-between p-3">
                 <div className="kiri">
                   <img
                     src="/assets/images/iconpdf.png"
                     width={60}
                     height={60}
-                    alt="PDF Icon"
+                    alt="pdf-icon"
                   />
                 </div>
 
@@ -52,7 +57,6 @@ export default function DetailArsipFisik() {
                     />
                   </div>
 
-                
                   <div
                     className="d-flex align-items-center border px-2 radius-10 text-white"
                     style={{ height: 35, backgroundColor: "#386CFF" }}
@@ -66,7 +70,6 @@ export default function DetailArsipFisik() {
                     />
                   </div> */}
 
-                  {/* Label Tersedia */}
                   <div
                     className="d-flex align-items-center border px-2 radius-10 text-white"
                     style={{ height: 35, backgroundColor: "#46D657" }}
@@ -76,10 +79,10 @@ export default function DetailArsipFisik() {
                 </div>
               </div>
 
-              {/* Judul Arsip */}
+              {/* Judul */}
               <h6 className="ms-3 mb-0 fw-bold">{arsip.judul_arsip}</h6>
 
-              {/* Detail Informasi */}
+              {/* Detail Info */}
               <div className="d-flex justify-content-between p-3 py-2">
                 <div className="info-kiri">
                   <div className="mb-1">
@@ -97,7 +100,6 @@ export default function DetailArsipFisik() {
                     <span className="text-secondary">{arsip.tipe_arsip}</span>
                   </div>
                 </div>
-
                 <div className="info-kanan">
                   <div className="mb-1">
                     <span className="fw-bold">Keterangan</span> :{" "}
@@ -112,38 +114,7 @@ export default function DetailArsipFisik() {
                 </div>
               </div>
 
-              {/* Breadcrumb Lokasi (Footer Card) */}
-              <div className="d-flex align-items-center p-3 pt-0">
-                <img
-                  src="/assets/images/pin.png"
-                  width={15}
-                  height={15}
-                  className="me-2"
-                  alt="pin"
-                />
-
-                {[
-                  arsip.gedung.name,
-                  arsip.lantai.name,
-                  arsip.ruang.name,
-                  arsip.lemari.name,
-                  arsip.shelf.name,
-                  filterFolder[0].name,
-                ].map((location, index, array) => (
-                  <React.Fragment key={index}>
-                    <p className="mb-0 small me-1">{location}</p>
-                    {index < array.length - 1 && (
-                      <img
-                        src="/assets/images/Vector.png"
-                        width={5}
-                        height={10}
-                        className="me-1"
-                        alt="arrow"
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
+              {/* Action Buttons: Edit & Hapus */}
               {role == "petugas" && (
                 <div className="d-flex p-3 pt-0 gap-3">
                   <button

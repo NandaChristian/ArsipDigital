@@ -2,6 +2,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import Chart from "react-apexcharts";
 import { useState } from "react";
 import Navigation from "../Navigation";
+import { usePengajuan } from "../../context/PengajuanContext";
 
 export default function DashboardPetugas() {
   const navigate = useNavigate();
@@ -10,7 +11,21 @@ export default function DashboardPetugas() {
   const tab = location.pathname.includes("UserAkses") ? "UserAkses"
     : location.pathname.includes("FileBanyakDiakses") ? "FileBanyakDiakses"
       : "FileTerbesar";
+  const { arsips, categories, users, pinjamans, role } = usePengajuan()
+  const filterUser = users?.filter((user) => user.role == "staff");
+  const approve = pinjamans?.filter((pinjaman) => pinjaman.status == "approve")
+  const reject = pinjamans?.filter((pinjaman) => pinjaman.status == "reject");
+  const pending = pinjamans?.filter((pinjaman) => pinjaman.status == "approve" && !pinjaman.telah_dikembalikan)
+  const dataPerBulan = new Array(12).fill(0);
 
+  // 2. Iterasi data pinjaman dan tambahkan ke bulan yang sesuai
+  pinjamans?.forEach((pinjaman) => {
+    if (pinjaman.waktu_kembalikan) {
+      const tanggal = new Date(pinjaman.waktu_kembalikan);
+      const bulan = tanggal.getMonth(); // Mengembalikan 0 untuk Januari, 1 untuk Februari, dst.
+      dataPerBulan[bulan] += 1;
+    }
+  });
   const MyLineChart = () => {
     const [options] = useState({
       chart: {
@@ -53,9 +68,10 @@ export default function DashboardPetugas() {
     const [series] = useState([
       {
         name: "Arsip Digital",
-        data: [31, 40, 28, 51, 42, 109, 100, 91, 125, 90, 110, 95]
+        data: dataPerBulan
       }
     ]);
+
 
     return (
       <div>
@@ -103,7 +119,7 @@ export default function DashboardPetugas() {
               <div className="col">
                 <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-10">
                   <img src="assets/images/Avatar.png" alt style={{ marginRight: 10 }} />
-                  Petugas
+                  {role}
                 </button>
               </div>
             </div>
@@ -130,13 +146,15 @@ export default function DashboardPetugas() {
               <p className="user-name mb-0">Rabu</p>
               <p className="designattion mb-0">November 2025</p>
             </div>
-            <Link to="/approvalPetugas">
-              <div className="user-box">
-                <div className="col">
-                  <button type="button" className="btn btn-primary px-5 radius-30">Pengajuan Peminjaman</button>
+            {role == "petugas" && (
+              <Link to="/approvalPetugas">
+                <div className="user-box">
+                  <div className="col">
+                    <button type="button" className="btn btn-primary px-5 radius-30">Pengajuan Peminjaman</button>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            )}
           </div>
           <div className="search-bar flex-grow-1">
             <h6>Rekap Per bulan</h6>
@@ -149,7 +167,7 @@ export default function DashboardPetugas() {
                     <div className="text-center">
                       <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
                       </div>
-                      <h4 className="my-1">20</h4>
+                      <h4 className="my-1">{arsips.length}</h4>
                       <p className="mb-0 text-secondary">Total Arsip</p>
                     </div>
                   </div>
@@ -161,31 +179,20 @@ export default function DashboardPetugas() {
                     <div className="text-center">
                       <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/list.png" className="logo-item" alt />
                       </div>
-                      <h4 className="my-1">12</h4>
+                      <h4 className="my-1">{categories.length}</h4>
                       <p className="mb-0 text-secondary">Total Kategori</p>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div className="col">
                 <div className="card radius-10" style={{ height: '100%' }}>
                   <div className="card-body">
                     <div className="text-center">
                       <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/users.png" className="logo-item" alt />
                       </div>
-                      <h4 className="my-1">11</h4>
-                      <p className="mb-0 text-secondary">Total Petugas</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card radius-10" style={{ height: '100%' }}>
-                  <div className="card-body">
-                    <div className="text-center">
-                      <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/users.png" className="logo-item" alt />
-                      </div>
-                      <h4 className="my-1">8</h4>
+                      <h4 className="my-1">{filterUser.length}</h4>
                       <p className="mb-0 text-secondary">Total User</p>
                     </div>
                   </div>
@@ -197,7 +204,7 @@ export default function DashboardPetugas() {
                     <div className="text-center">
                       <div className="widgets-icons rounded-circle mx-auto bg-light-success text-success mb-3"><img src="assets/images/circle-check.png" className="logo-item" alt />
                       </div>
-                      <h4 className="my-1">2</h4>
+                      <h4 className="my-1">{approve.length}</h4>
                       <p className="mb-0 text-secondary">Permintaan Disetujui</p>
                     </div>
                   </div>
@@ -209,7 +216,7 @@ export default function DashboardPetugas() {
                     <div className="text-center">
                       <div className="widgets-icons rounded-circle mx-auto bg-light-danger text-danger mb-3"><img src="assets/images/circle-x.png" className="logo-item" alt />
                       </div>
-                      <h4 className="my-1">2</h4>
+                      <h4 className="my-1">{reject.length}</h4>
                       <p className="mb-0 text-secondary">Permintaan Ditolak</p>
                     </div>
                   </div>
@@ -221,7 +228,7 @@ export default function DashboardPetugas() {
                     <div className="text-center">
                       <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
                       </div>
-                      <h4 className="my-1">2</h4>
+                      <h4 className="my-1">{pending.length}</h4>
                       <p className="mb-0 text-secondary">File <br />Dipinjam</p>
                     </div>
                   </div>
@@ -233,7 +240,7 @@ export default function DashboardPetugas() {
                     <div className="text-center">
                       <div className="widgets-icons rounded-circle mx-auto bg-light-primary text-primary mb-3"><img src="assets/images/file-archive.png" className="logo-item" alt />
                       </div>
-                      <h4 className="my-1">2</h4>
+                      <h4 className="my-1">{pending.length}</h4>
                       <p className="mb-0 text-secondary">File Belum Dikembalikan</p>
                     </div>
                   </div>
@@ -245,7 +252,7 @@ export default function DashboardPetugas() {
                 <div className="text-center">
                   <div className="widgets-icons rounded-circle mx-auto bg-white text-white mb-3"><img src="assets/images/file-clock.png" className="logo-item" alt />
                   </div>
-                  <h4 className="my-1 text-white">2</h4>
+                  <h4 className="my-1 text-white">{pending.length}</h4>
                   <p className="mb-0 text-white">Permintaan Peminjaman</p>
                 </div>
               </div>
@@ -306,7 +313,7 @@ export default function DashboardPetugas() {
               </div>
             </div>
           </div>
-          <div className="col d-flex mt-3">
+          {/* <div className="col d-flex mt-3">
             <div className="card radius-10 w-100">
               <div className="card-body-pim">
                 <ul className="nav nav-pills mb-3 d-flex justify-content-between" role="tablist">
@@ -332,145 +339,146 @@ export default function DashboardPetugas() {
                     </div>
                   </li>
                 </ul>
-                {/* File Terbesar */}
-                <div className="kotak-file p-3 pt-0 pb-0">
-                  <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
-                    <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
-                      <img src="assets/images/iconpdf.png" className="img-pim" alt />
-                    </div>
-                    <div className="col-md-10">
-                      <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                        <h6 className="ms-3 mb-0">OJK</h6>
-                        <div className="d-flex align-items-center border p-2 radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
-                          <div className>
-                            <p className="mb-0" style={{ color: 'white' }}>Digital</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                          </div>
-                        </div>
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                          </div>
-                        </div>
-                      </div>
+          <div className="kotak-file p-3 pt-0 pb-0">
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2 radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
+                    <div className>
+                      <p className="mb-0" style={{ color: 'white' }}>Digital</p>
                     </div>
                   </div>
-                  <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
-                    <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
-                      <img src="assets/images/iconpdf.png" className="img-pim" alt />
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
                     </div>
-                    <div className="col-md-10">
-                      <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                        <h6 className="ms-3 mb-0">OJK</h6>
-                        <div className="d-flex align-items-center border p-2  radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
-                          <div className>
-                            <p className="mb-0" style={{ color: 'white' }}>Digital</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                          </div>
-                        </div>
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                          </div>
-                        </div>
-                      </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
                     </div>
                   </div>
-                  <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
-                    <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
-                      <img src="assets/images/iconpdf.png" className="img-pim" alt />
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
                     </div>
-                    <div className="col-md-10">
-                      <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                        <h6 className="ms-3 mb-0">OJK</h6>
-                        <div className="d-flex align-items-center border p-2  radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
-                          <div className>
-                            <p className="mb-0" style={{ color: 'white' }}>Digital</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                          </div>
-                        </div>
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                          </div>
-                        </div>
-                      </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
                     </div>
                   </div>
-                  <div className="row border 1 radius-10 pt-3 pb-3 mb-1">
-                    <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
-                      <img src="assets/images/iconpdf.png" className="img-pim" alt />
+                </div>
+              </div>
+            </div>
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
+                    <div className>
+                      <p className="mb-0" style={{ color: 'white' }}>Digital</p>
                     </div>
-                    <div className="col-md-10">
-                      <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                        <h6 className="ms-3 mb-0">OJK</h6>
-                        <div className="d-flex align-items-center border p-2  radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
-                          <div className>
-                            <p className="mb-0" style={{ color: 'white' }}>Digital</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
-                          </div>
-                        </div>
-                        <div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
-                          </div>
-                          <div>
-                            <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
-                          </div>
-                        </div>
-                      </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row border 1 mb-3 radius-10 pt-3 pb-3">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
+                    <div className>
+                      <p className="mb-0" style={{ color: 'white' }}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row border 1 radius-10 pt-3 pb-3 mb-1">
+              <div className="col-md-2 text-end d-flex align-items-center justify-content-center">
+                <img src="assets/images/iconpdf.png" className="img-pim" alt />
+              </div>
+              <div className="col-md-10">
+                <div className="kanan pe-0" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                  <h6 className="ms-3 mb-0">OJK</h6>
+                  <div className="d-flex align-items-center border p-2  radius-10" style={{ marginRight: 10, background: '#3468F8', height: 35 }}>
+                    <div className>
+                      <p className="mb-0" style={{ color: 'white' }}>Digital</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex  justify-content-between pt-0 pb-1 p-3">
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Kategori</h7> : <h7 className="mb-0 text-secondary">OJK</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Sub Kategori</h7> : <h7 className="mb-0 text-secondary">PP</h7>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Ukuran</h7> : <h7 className="mb-0 text-secondary">80 MB</h7>
+                    </div>
+                    <div>
+                      <h7 className="mb-1 font-weight-bold">Waktu Upload</h7> : <h7 className="mb-0 text-secondary">1 November 2025 | 10:30:00</h7>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div></div></div>
+        </div>
+      </div>
+    </div> */}
+        </div >
+      </div >
+    </div >
 
   )
 

@@ -1,21 +1,119 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import ApprovalFisik from "../ApprovalFisik";
 import Navigation from "../Navigation";
+import { usePengajuan } from "../../context/PengajuanContext";
+import { useState } from "react";
 
 export default function ApprovalPetugas() {
-
   const navigate = useNavigate();
   const location = useLocation();
+  const [param, setParam] = useState("fisik");
+  const tab = location.pathname.includes("Arsip Digital")
+    ? "Arsip Digital"
+    : "Arsip Fisik";
+  const { pinjamans, tujuans, token } = usePengajuan();
+  const fisik = pinjamans?.filter((pinjaman) => pinjaman?.arsip?.file == null);
+  const digital = pinjamans?.filter(
+    (pinjaman) => pinjaman?.arsip?.file != null,
+  );
+  const filterPinjaman = param == "fisik" ? fisik : digital;
+  const formatDate = (dateString) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
 
-  const tab = location.pathname.includes("Arsip Digital") ? "Arsip Digital" : "Arsip Fisik";
+    return new Intl.DateTimeFormat("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    })
+      .format(date)
+      .replace(".", ":"); // Mengganti titik pemisah jam menjadi titik dua jika perlu
+  };
+  const handleApprove = async (item) => {
+    const dataToSend = {
+      user_uuid: item.user_uuid,
+      arsip_uuid: item.arsip_uuid,
+      tujuan_uuid: item.tujuan_uuid,
+      status: "approve",
+      response_at: new Date().toISOString(), // Format ISO agar diterima Laravel (as date)
+    };
+    try {
+      const url = `${import.meta.env.VITE_API_URL}/api/peminjamans/${item.uuid}`;
+
+      const method = "PUT";
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Login Gagal");
+      }
+    } catch (error) {
+      console.error("Login Gagal:", error.message);
+    }
+  };
+  const handleGetArsip = async (item) => {
+    const waktuKembali = new Date();
+    waktuKembali.setHours(waktuKembali.getHours() + 8);
+    const dataToSend = {
+      user_uuid: item.user_uuid,
+      arsip_uuid: item.arsip_uuid,
+      tujuan_uuid: item.tujuan_uuid,
+      status: "approve",
+      waktu_diterima: new Date().toISOString(),
+      telah_diterima: true,
+      waktu_kembalikan: waktuKembali.toISOString(),
+    };
+    try {
+      const url = `${import.meta.env.VITE_API_URL}/api/peminjamans/${item.uuid}`;
+
+      const method = "PUT";
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(dataToSend),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Login Gagal");
+      }
+    } catch (error) {
+      console.error("Login Gagal:", error.message);
+    }
+  };
 
   return (
     <div className="wrapper">
       {/*sidebar wrapper */}
       <div className="sidebar-wrapper" data-simplebar="true">
-        <div className="sidebar-header" style={{ border: 'none', justifyContent: 'center' }}>
+        <div
+          className="sidebar-header"
+          style={{ border: "none", justifyContent: "center" }}
+        >
           <div className>
-            <h4 className="logo-text" style={{ fontWeight: 600, fontSize: 20, marginLeft: 0 }}>Arsip Digital Bank</h4>
+            <h4
+              className="logo-text"
+              style={{ fontWeight: 600, fontSize: 20, marginLeft: 0 }}
+            >
+              Arsip Digital Bank
+            </h4>
           </div>
         </div>
         {/*navigation*/}
@@ -27,7 +125,8 @@ export default function ApprovalPetugas() {
       <header>
         <div className="topbar d-flex align-items-center">
           <nav className="navbar navbar-expand">
-            <div className="mobile-toggle-menu"><i className="bx bx-menu" />
+            <div className="mobile-toggle-menu">
+              <i className="bx bx-menu" />
             </div>
             <div className="search-bar flex-grow-1">
               <h4 className="mb-0">Selamat Datang</h4>
@@ -35,14 +134,26 @@ export default function ApprovalPetugas() {
             <div className="top-menu ms-auto">
               <ul className="navbar-nav align-items-center">
                 <li className="nav-item dropdown dropdown-large">
-                  <img src="/assets/images/bell-dot.png" width="25px" height="25px" alt />
+                  <img
+                    src="/assets/images/bell-dot.png"
+                    width="25px"
+                    height="25px"
+                    alt
+                  />
                 </li>
               </ul>
             </div>
-            <div className="user-box" style={{ border: 'none' }}>
+            <div className="user-box" style={{ border: "none" }}>
               <div className="col">
-                <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
-                  <img src="/assets/images/Avatar.png" alt style={{ marginRight: 10 }} />
+                <button
+                  type="button"
+                  className="btn btn-primary px-5 pe-3 ps-3 radius-30"
+                >
+                  <img
+                    src="/assets/images/Avatar.png"
+                    alt
+                    style={{ marginRight: 10 }}
+                  />
                   Petugas
                 </button>
               </div>
@@ -54,22 +165,47 @@ export default function ApprovalPetugas() {
       <div className="page-wrapper">
         <div className="page-content">
           <div className="d-flex align-items-center">
-            <div className="search-bar flex-grow-1 d-flex align-items-center" style={{ marginBottom: 10 }}>
+            <div
+              className="search-bar flex-grow-1 d-flex align-items-center"
+              style={{ marginBottom: 10 }}
+            >
               <h4 style={{ marginBottom: 0 }}>Approval</h4>
             </div>
           </div>
           <div className="d-flex align-items-center mb-3">
             <div className="search-bar flex-grow-1">
               <ul className="nav nav-pills" role="tablist">
-                <li onClick={() => navigate("/approvalPetugas")} className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`} role="presentation" style={{ width: '50%', cursor: 'pointer' }}>
-                  <div className="nav-link active" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="true">
+                <li
+                  onClick={() => setParam("fisik")}
+                  className={`nav-item ${tab === "Arsip Fisik" ? "active" : ""}`}
+                  role="presentation"
+                  style={{ width: "50%", cursor: "pointer" }}
+                >
+                  <div
+                    className="nav-link active"
+                    data-bs-toggle="pill"
+                    href="#primary-pills-home"
+                    role="tab"
+                    aria-selected="true"
+                  >
                     <div className="d-flex align-items-center justify-content-center">
                       <div className="tab-title">Arsip Fisik</div>
                     </div>
                   </div>
                 </li>
-                <li onClick={() => navigate("/approvalPetugas/approvalDigitalPetugas")} className={`nav-item ${tab === "Arsip Digital" ? "active" : ""}`} role="presentation" style={{ width: '50%', cursor: 'pointer' }}>
-                  <div className="nav-link" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="false">
+                <li
+                  onClick={() => setParam("digital")}
+                  className={`nav-item ${tab === "Arsip Digital" ? "active" : ""}`}
+                  role="presentation"
+                  style={{ width: "50%", cursor: "pointer" }}
+                >
+                  <div
+                    className="nav-link"
+                    data-bs-toggle="pill"
+                    href="#primary-pills-profile"
+                    role="tab"
+                    aria-selected="false"
+                  >
                     <div className="d-flex align-items-center justify-content-center">
                       <div className="tab-title">Arsip Digital</div>
                     </div>
@@ -80,16 +216,48 @@ export default function ApprovalPetugas() {
           </div>
           <div className="dropdown bg-white my-3" style={{ height: 38 }}>
             <div className="d-flex justify-content-between">
-              <a href="#" className="btn btn-white btn-sm my-3 mt-0 p-2 pe-0" style={{ border: 'none' }} data-bs-toggle="dropdown" data-display="static">Tipe<i className="bx bxs-chevron-down ms-5" /></a>
-              <a href="#" className="btn btn-white btn-sm my-3 mt-0 p-2 pe-0" style={{ border: 'none' }} data-bs-toggle="dropdown" data-display="static">Kategori<i className="bx bxs-chevron-down ms-5" /></a>
-              <a href="#" className="btn btn-white btn-sm my-3 mt-0 p-2 pe-0" style={{ border: 'none' }} data-bs-toggle="dropdown" data-display="static">Status<i className="bx bxs-chevron-down ms-5" /></a>
+              <a
+                href="#"
+                className="btn btn-white btn-sm my-3 mt-0 p-2 pe-0"
+                style={{ border: "none" }}
+                data-bs-toggle="dropdown"
+                data-display="static"
+              >
+                Tipe
+                <i className="bx bxs-chevron-down ms-5" />
+              </a>
+              <a
+                href="#"
+                className="btn btn-white btn-sm my-3 mt-0 p-2 pe-0"
+                style={{ border: "none" }}
+                data-bs-toggle="dropdown"
+                data-display="static"
+              >
+                Kategori
+                <i className="bx bxs-chevron-down ms-5" />
+              </a>
+              <a
+                href="#"
+                className="btn btn-white btn-sm my-3 mt-0 p-2 pe-0"
+                style={{ border: "none" }}
+                data-bs-toggle="dropdown"
+                data-display="static"
+              >
+                Status
+                <i className="bx bxs-chevron-down ms-5" />
+              </a>
             </div>
           </div>
 
-          <ApprovalFisik />
+          <ApprovalFisik
+            filterPinjaman={filterPinjaman}
+            tujuans={tujuans}
+            handleApprove={(item) => handleApprove(item)}
+            formatDate={(string) => formatDate(string)}
+            handleGetArsip={(item) => handleGetArsip(item)}
+          />
         </div>
       </div>
     </div>
-
-  )
+  );
 }

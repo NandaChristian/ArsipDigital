@@ -2,6 +2,7 @@ import Sidebar from "../Sidebar";
 import { PengajuanContext } from "../../context/PengajuanContext";
 import Navigation from "../Navigation";
 import React from "react";
+import AdminLayout from "../layouts/AdminLayout";
 
 export default function KategoriMaster() {
   const { categories, refreshData, token } = React.useContext(PengajuanContext)
@@ -77,50 +78,7 @@ export default function KategoriMaster() {
     }
   };
   return (
-    <div className="wrapper">
-      {/*sidebar wrapper */}
-      <div className="sidebar-wrapper" data-simplebar="true">
-        <div className="sidebar-header" style={{ border: 'none', justifyContent: 'center' }}>
-          <div className>
-            <h4 className="logo-text" style={{ fontWeight: 600, fontSize: 20, marginLeft: 0 }}>Arsip Digital Bank</h4>
-          </div>
-        </div>
-        {/*navigation*/}
-        <Navigation />
-        {/*end navigation*/}
-      </div>
-      {/*end sidebar wrapper */}
-      {/*start header */}
-      <header>
-        <div className="topbar d-flex align-items-center">
-          <nav className="navbar navbar-expand">
-            <div className="mobile-toggle-menu"><i className="bx bx-menu" />
-            </div>
-            <div className="search-bar flex-grow-1">
-              <h4 className="mb-0">Selamat Datang</h4>
-            </div>
-            <div className="top-menu ms-auto">
-              <ul className="navbar-nav align-items-center">
-                <li className="nav-item dropdown dropdown-large">
-                  <div className="nav-link position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="user-box" style={{ border: 'none' }}>
-              <div className="col">
-                <button type="button" className="btn btn-primary px-5 pe-3 ps-3 radius-30">
-                  <img src="assets/images/Avatar.png" alt style={{ marginRight: 10 }} />
-                  Petugas
-                </button>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
-      {/*end header */}
-      {/*start page wrapper */}
+    <AdminLayout>
       <div className="page-wrapper">
         <div className="page-content">
           <div className="d-flex align-items-center">
@@ -229,7 +187,6 @@ export default function KategoriMaster() {
           </div>
         </div>
       </div>
-    </div>
-
+    </AdminLayout>
   );
 }

@@ -1,52 +1,111 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
-    return (
-        <ul className="metismenu p-3" id="menu">
-            <h6 className="ms-3 mb-3">MAIN MENU</h6>
-            <li>
-                <Link to="/dashboardPetugas" className="link">
-                    <div className="parent-icon">
-                        <img src="/assets/images/house.png" alt="Dashboard" />
-                    </div>
-                    <div className="menu-title">Dashboard</div>
-                </Link>
-            </li>
-            {/* <li>
-            <Link to="/dataUserPetugas" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/house.png" alt="Dashboard" />
-              </div>
-              <div className="menu-title">Data User</div>
-            </Link>
-          </li> */}
-            <li>
-                <Link to="/dataArsipPetugas" className="link">
-                    <div className="parent-icon">
-                        <img src="/assets/images/clipboard-list.png" alt="Data Arsip Petugas" />
-                    </div>
-                    <div className="menu-title">Data Arsip</div>
-                </Link>
-            </li>
-            <li>
-                <Link to="/dataMaster/main" className="link">
-                    <div className="parent-icon">
-                        <img src="/assets/images/clipboard-list.png" alt="Data Master" />
-                    </div>
-                    <div className="menu-title">Data Master</div>
-                </Link>
-            </li>
-            <li>
-                <Link to="/approvalPetugas" className="link">
-                    <div className="parent-icon">
-                        <img src="/assets/images/history.png" alt="Approval" />
-                    </div>
-                    <div className="menu-title">Approval</div>
-                </Link>
-            </li>
-        </ul>
-    )
-}
+  const [menus, setMenus] = useState([]);
+  const [role, setRole] = useState(null);
 
-export default Navigation
+  const petugasMenu = [
+    // { name: "Dashboard", path: "#", icon: "house.png" },
+    // { name: "Data Arsip", path: "#", icon: "clipboard-list.png" },
+    // {
+    //   name: "Data Master",
+    //   path: "#",
+    //   icon: "clipboard-list.png",
+    // },
+    // { name: "Approval", path: "#", icon: "history.png" },
+    { name: "Dashboard", path: "/dashboardPetugas", icon: "house.png" },
+    { name: "Data Arsip", path: "/dataArsip", icon: "clipboard-list.png" },
+    {
+      name: "Data Master",
+      path: "/dataMaster/main",
+      icon: "clipboard-list.png",
+    },
+    { name: "Approval", path: "/approvalPetugas", icon: "history.png" },
+    { name: "Manajemen Surat", path: "/surat", icon: "history.png" },
+    {
+      name: "Logout",
+      path: "/",
+      icon: "clipboard-list.png",
+    },
+  ];
+
+  const staffMenu = [
+    { name: "Dashboard", path: "/dashboardStaff", icon: "house.png" },
+    { name: "Data Arsip", path: "/dataArsip", icon: "clipboard-list.png" },
+    {
+      name: "Log Pengajuan",
+      path: "/logPengajuanStaff",
+      icon: "clipboard-list.png",
+    },
+    { name: "Log History", path: "/logHistoryStaff", icon: "history.png" },
+    // { name: "Dashboard", path: "#", icon: "house.png" },
+    // { name: "Data Arsip", path: "#", icon: "clipboard-list.png" },
+    // {
+    //   name: "Log Pengajuan",
+    //   path: "#",
+    //   icon: "clipboard-list.png",
+    // },
+    // { name: "Log History", path: "#", icon: "history.png" },
+    {
+      name: "Disposisi Surat",
+      path: "/disposisistaff",
+      icon: "clipboard-list.png",
+    },
+    {
+      name: "Logout",
+      path: "/",
+      icon: "clipboard-list.png",
+    },
+  ];
+  const pimpinanMenu = [
+    { name: "Dashboard", path: "/dashboardPetugas", icon: "house.png" },
+    { name: "Data Arsip", path: "/dataArsip", icon: "clipboard-list.png" },
+    // { name: "Dashboard", path: "#", icon: "house.png" },
+    // { name: "Data Arsip", path: "#", icon: "clipboard-list.png" },
+    { name: "Disposisi Surat", path: "/disposisi", icon: "clipboard-list.png" },
+    {
+      name: "Riwayat Disposisi",
+      path: "/riwayat",
+      icon: "clipboard-list.png",
+    },
+    {
+      name: "Logout",
+      path: "/",
+      icon: "clipboard-list.png",
+    },
+  ];
+
+  useEffect(() => {
+    // 1. Ambil role dari localStorage cukup sekali saat komponen pertama kali muncul
+    const userRole = localStorage.getItem("role");
+    setRole(userRole);
+
+    // 2. Set menu berdasarkan role di dalam useEffect agar tidak loop
+    if (userRole === "petugas") {
+      setMenus(petugasMenu);
+    } else if (userRole === "staff") {
+      setMenus(staffMenu);
+    } else {
+      setMenus(pimpinanMenu);
+    }
+  }, []); // Dependency array kosong [] artinya hanya jalan 1x saat mount
+
+  return (
+    <ul className="metismenu p-3" id="menu">
+      <h6 className="ms-3 mb-3">MAIN MENU</h6>
+      {menus.map((menu) => (
+        <li key={menu.path}>
+          <Link to={menu.path} className="link">
+            <div className="parent-icon">
+              <img src={`/assets/images/${menu.icon}`} alt={menu.name} />
+            </div>
+            <div className="menu-title">{menu.name}</div>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default Navigation;

@@ -1,6 +1,8 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { usePengajuan } from "../../context/PengajuanContext";
+import Navigation from "../Navigation";
+import AdminLayout from "../layouts/AdminLayout";
 
 export default function DataArsipStaff() {
   const navigate = useNavigate();
@@ -127,82 +129,7 @@ export default function DataArsipStaff() {
   }, []);
 
   return (
-    <div className="wrapper">
-      {/*sidebar wrapper */}
-      <div className="sidebar-wrapper" data-simplebar="true">
-        <div className="sidebar-header" style={{ border: 'none', justifyContent: 'center' }}>
-          <div className>
-            <h4 className="logo-text" style={{ fontWeight: 600, fontSize: 20, marginLeft: 0 }}>Arsip Digital Bank</h4>
-          </div>
-        </div>
-        {/*navigation*/}
-        <ul className="metismenu p-3" id="menu">
-          <h6 className="ms-3 mb-3">MAIN MENU</h6>
-          <li>
-            <Link to="/dashboardStaff" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/house.png" alt="Dashboard" />
-              </div>
-              <div className="menu-title">Dashboard</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/dataArsipStaff" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/clipboard-list.png" alt="Data Arsip" />
-              </div>
-              <div className="menu-title">Data Arsip</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/logPengajuanStaff" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/clipboard-list.png" alt="Log Pengajuan" />
-              </div>
-              <div className="menu-title">Log Pengajuan</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/logHistoryStaff" className="link">
-              <div className="parent-icon">
-                <img src="/assets/images/history.png" alt="Log History" />
-              </div>
-              <div className="menu-title">Log History</div>
-            </Link>
-          </li>
-        </ul>
-        {/*end navigation*/}
-      </div>
-      {/*end sidebar wrapper */}
-      {/*start header */}
-      <header>
-        <div className="topbar d-flex align-items-center">
-          <nav className="navbar navbar-expand">
-            <div className="mobile-toggle-menu"><i className="bx bx-menu" />
-            </div>
-            <div className="search-bar flex-grow-1">
-              <h4 className="mb-0">Selamat Datang</h4>
-            </div>
-            <div className="top-menu ms-auto">
-              <ul className="navbar-nav align-items-center">
-                <li className="nav-item dropdown dropdown-large">
-                  <img src="assets/images/bell-dot.png" width="25px" height="25px" alt />
-                </li>
-              </ul>
-            </div>
-            <div className="user-box" style={{ border: 'none' }}>
-              <div className="col">
-                <button type="button" className="btn-avatar p-3 pt-1 pb-1">
-                  <img src="assets/images/Avatar.png" alt style={{ marginRight: 10 }} />
-                  Pegawai
-                </button>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
-      {/*end header */}
-      {/*start page wrapper */}
+    <AdminLayout>
       <div className="page-wrapper">
         <div className="page-content">
           <div className="d-flex align-items-center">
@@ -229,11 +156,7 @@ export default function DataArsipStaff() {
                 </li>
               </ul>
             </div>
-            <div className="user-box">
-              <div className="col mb-3">
-                <button type="button" className="btn-pengajuan px-5 pb-2 pt-2" data-bs-toggle="modal" data-bs-target="#modalFisik">Pengajuan Peminjaman</button>
-              </div>
-            </div>
+
           </div>
           <div className="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
             <div className="col">
@@ -645,6 +568,6 @@ export default function DataArsipStaff() {
           </div>
         )}
       </div>
-    </div>
+    </AdminLayout>
   );
 }
